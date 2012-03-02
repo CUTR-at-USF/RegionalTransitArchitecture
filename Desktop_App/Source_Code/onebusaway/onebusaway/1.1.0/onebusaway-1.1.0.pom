@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.onebusaway</groupId>
+  <artifactId>onebusaway</artifactId>
+  <version>1.1.0</version>
+  <packaging>pom</packaging>
+
+  <name>OneBusAway</name>
+  <description>OneBusAway provides a set of tools to make using public transit easier</description>
+  <url>http://code.google.com/p/onebusaway/</url>
+
+  <organization>
+    <name>OneBusAway</name>
+    <url>http://onebusaway.org/</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <distribution_id>sonatype-nexus-staging</distribution_id>
+    <distribution_name>Sonatype Nexus Release Repository</distribution_name>
+    <distribution_url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</distribution_url>
+    <snapshot_distribution_id>sonatype-nexus-snapshots</snapshot_distribution_id>
+    <snapshot_distribution_name>Sonatype Nexus Snapshots Repository</snapshot_distribution_name>
+    <snapshot_distribution_url>http://oss.sonatype.org/content/repositories/snapshots</snapshot_distribution_url>
+    <site_id>developer.onebusaway.org</site_id>
+    <site_url>scp://developer.onebusaway.org/var/www/sites/developer/modules/${project.name}/${project.version}</site_url>
+    <site_base_url>http://developer.onebusaway.org/modules</site_base_url>
+    <currentVersion>${project.version}</currentVersion>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+
+  <developers>
+    <developer>
+      <id>bdferris</id>
+      <name>Brian Ferris</name>
+      <email>bdferris@onebusaway.org</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:svn:http://onebusaway.googlecode.com/svn/onebusaway/tags/onebusaway-1.1.0</connection>
+    <developerConnection>scm:svn:https://onebusaway.googlecode.com/svn/onebusaway/tags/onebusaway-1.1.0</developerConnection>
+    <url>http://code.google.com/p/onebusaway/source/browse/#svn/onebusaway/tags/onebusaway-1.1.0</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>${distribution_id}</id>
+      <name>${distribution_name}</name>
+      <url>${distribution_url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${snapshot_distribution_id}</id>
+      <name>${snapshot_distribution_name}</name>
+      <url>${snapshot_distribution_url}</url>
+    </snapshotRepository>
+    <site>
+      <id>${site_id}</id>
+      <url>${site_url}</url>
+    </site>
+  </distributionManagement>
+
+  <issueManagement>
+    <system>Google Code</system>
+    <url>https://code.google.com/p/onebusaway/issues/list</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Hudson</system>
+    <url>http://hudson.onebusaway.org/</url>
+  </ciManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>onebusaway-users</name>
+      <archive>https://groups.google.com/group/onebusaway-users</archive>
+    </mailingList>
+    <mailingList>
+      <name>onebusaway-developers</name>
+      <archive>https://groups.google.com/group/onebusaway-developers</archive>
+    </mailingList>
+    <mailingList>
+      <name>onebusaway-api</name>
+      <archive>https://groups.google.com/group/onebusaway-api</archive>
+    </mailingList>
+    <mailingList>
+      <name>onebusaway-issues</name>
+      <archive>https://groups.google.com/group/onebusaway-issues</archive>
+    </mailingList>
+    <mailingList>
+      <name>onebusaway-commits</name>
+      <archive>https://groups.google.com/group/onebusaway-commits</archive>
+    </mailingList>
+    <mailingList>
+      <name>onebusaway-hudson</name>
+      <archive>https://groups.google.com/group/onebusaway-hudson</archive>
+    </mailingList>
+  </mailingLists>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.4.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.4.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.0-beta-3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>1.2.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.1.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.1.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <!-- We enable a special onebusaway-release profile -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <goals>deploy</goals>
+          <arguments>-Ponebusaway-release</arguments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.3.1</version>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+          </reportPlugins>
+        </configuration>
+      </plugin>
+    </plugins>
+    <!-- In Maven 3, ssh wagon is no longer enabled by default. Since many of our internal deployments use ssh, we enable 
+      it here -->
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>1.0-beta-7</version>
+      </extension>
+    </extensions>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>onebusaway</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- We want to sign all artifacts with our gpg key on release -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="modules/spring-aop.jar"/>
+	<classpathentry kind="lib" path="modules/spring-beans.jar"/>
+	<classpathentry kind="lib" path="modules/spring-context.jar"/>
+	<classpathentry kind="lib" path="modules/spring-core.jar"/>
+	<classpathentry kind="lib" path="modules/spring-dao.jar"/>
+	<classpathentry kind="lib" path="modules/spring-hibernate2.jar"/>
+	<classpathentry kind="lib" path="modules/spring-hibernate3.jar"/>
+	<classpathentry kind="lib" path="modules/spring-ibatis.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jca.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jdbc.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jdo.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jms.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jmx.jar"/>
+	<classpathentry kind="lib" path="modules/spring-jpa.jar"/>
+	<classpathentry kind="lib" path="modules/spring-portlet.jar"/>
+	<classpathentry kind="lib" path="modules/spring-remoting.jar"/>
+	<classpathentry kind="lib" path="modules/spring-struts.jar"/>
+	<classpathentry kind="lib" path="modules/spring-support.jar"/>
+	<classpathentry kind="lib" path="modules/spring-toplink.jar"/>
+	<classpathentry kind="lib" path="modules/spring-web.jar"/>
+	<classpathentry kind="lib" path="modules/spring-webmvc.jar"/>
+	<classpathentry kind="lib" path="commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="arcsde_jars/concurrent.jar"/>
+	<classpathentry kind="lib" path="arcsde_jars/icu4j_3_2.jar"/>
+	<classpathentry kind="lib" path="arcsde_jars/jpe_sdk.jar"/>
+	<classpathentry kind="lib" path="arcsde_jars/jsde_sdk.jar"/>
+	<classpathentry kind="lib" path="slf4j/slf4j-log4j12/1.5.8/slf4j-log4j12-1.5.8.jar"/>
+	<classpathentry kind="lib" path="slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="log4j/1.2.14/log4j-1.2.14.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

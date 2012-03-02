@@ -1,0 +1,18 @@
+\\dotsd7sanfs1\users$\OAUSFKT\My Documents\KhoaTranUSF\Visualization\Visualization.Web\bin\Visualization.Web.dll
+\\dotsd7sanfs1\users$\OAUSFKT\My Documents\KhoaTranUSF\Visualization\Visualization.Web\bin\Visualization.Web.pdb
+\\dotsd7sanfs1\users$\OAUSFKT\My Documents\KhoaTranUSF\Visualization\Visualization.Web\obj\Debug\ResolveAssemblyReference.cache
+\\dotsd7sanfs1\users$\OAUSFKT\My Documents\KhoaTranUSF\Visualization\Visualization.Web\obj\Debug\Visualization.Web.dll
+\\dotsd7sanfs1\users$\OAUSFKT\My Documents\KhoaTranUSF\Visualization\Visualization.Web\obj\Debug\Visualization.Web.pdb
+C:\Visualization\Visualization.Web\bin\Visualization.Web.dll
+C:\Visualization\Visualization.Web\bin\Visualization.Web.pdb
+C:\Visualization\Visualization.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Visualization\Visualization.Web\obj\Debug\Visualization.Web.dll
+C:\Visualization\Visualization.Web\obj\Debug\Visualization.Web.pdb
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\bin\Visualization.Web.dll
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\bin\Visualization.Web.pdb
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\Visualization.Web.Properties.Resources.resources
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\Visualization.Web.dll
+C:\Users\Agsuser\Desktop\FDOT7 on-site working\Visualization\Visualization.Web\obj\Debug\Visualization.Web.pdb

@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.onebusaway</groupId>
+    <artifactId>onebusaway-gtfs-hibernate</artifactId>
+    <version>1.1.2</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <artifactId>onebusaway</artifactId>
+        <groupId>org.onebusaway</groupId>
+        <version>1.0.2</version>
+        <relativePath>../onebusaway</relativePath>
+    </parent>
+
+    <scm>
+        <connection>scm:svn:http://onebusaway.googlecode.com/svn/modules/onebusaway-gtfs-hibernate/tags/onebusaway-gtfs-hibernate-1.1.2</connection>
+        <developerConnection>scm:svn:https://onebusaway.googlecode.com/svn/modules/onebusaway-gtfs-hibernate/tags/onebusaway-gtfs-hibernate-1.1.2</developerConnection>
+        <url>http://code.google.com/p/onebusaway/source/browse/#svn/modules/onebusaway-gtfs-hibernate/tags/onebusaway-gtfs-hibernate-1.1.2</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.onebusaway</groupId>
+            <artifactId>onebusaway-gtfs</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>3.3.1.GA</version>
+        </dependency>
+
+        <!--  Test Scope -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.0.0-rc7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>3.1.14</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.6.1</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.6.1</version>
+                <configuration>
+                    <links>
+                        <link>http://developer.onebusaway.org/apidocs/modules/onebusaway-gtfs/current/</link>
+                    </links>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>

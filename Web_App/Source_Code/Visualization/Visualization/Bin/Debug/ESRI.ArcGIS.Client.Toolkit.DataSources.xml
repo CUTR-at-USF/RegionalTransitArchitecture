@@ -1,0 +1,2737 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ESRI.ArcGIS.Client.Toolkit.DataSources</name>
+    </assembly>
+    <members>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile">
+            <summary>
+            Simple unzip utility leveraging Silverlight's GetResourceStream
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile.GetFileStream(System.String)">
+            <summary>
+            Gets the file stream for the specified filename.
+            </summary>
+            <param name="filename">The filename.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing,
+            or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile.EntryFileNames">
+            <summary>
+            Gets the name of the files in zip file.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer">
+            <summary>
+            Heat Map layer
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer"/> class.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.IntensityProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Intensity"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.OnIntensityPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            IntervalProperty property changed handler. 
+            </summary>
+            <param name="d">HeatMapLayer that changed its Interval.</param>
+            <param name="e">DependencyPropertyChangedEventArgs.</param> 
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.heatMapPoints_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Handles the CollectionChanged event of the heatMapPoints control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.GradientProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Gradient"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.OnGradientPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            GradientProperty property changed handler. 
+            </summary>
+            <param name="d">HeatMapLayer that changed its Gradient.</param>
+            <param name="e">DependencyPropertyChangedEventArgs.</param> 
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.GetSource(ESRI.ArcGIS.Client.Geometry.Envelope,System.Int32,System.Int32,ESRI.ArcGIS.Client.DynamicLayer.OnImageComplete)">
+            <summary>
+            Gets the source image to display in the dynamic layer. Override this to generate
+            or modify images.
+            </summary>
+            <param name="extent">The extent of the image being requested.</param>
+            <param name="width">The width of the image being requested.</param>
+            <param name="height">The height of the image being requested.</param>
+            <param name="onComplete">The method to call when the image is ready.</param>
+            <seealso cref="M:ESRI.ArcGIS.Client.DynamicLayer.OnProgress(System.Int32)"/>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Cancel">
+            <summary>
+            Stops loading of any pending images
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.renderThread_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Handles the DoWork event of the renderThread control. This is where we
+            render the heatmap outside the UI thread.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.DoWorkEventArgs"/> instance 
+            containing the event data.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.renderThread_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Handles the RunWorkerCompleted event of the renderThread control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.renderThread_ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            Handles the ProgressChanged event of the renderThread control and fires the layer progress event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.ProgressChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.InterpolateColor(System.Single,System.Collections.Generic.List{ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.ThreadSafeGradientStop})">
+            <summary>
+            Lienarly interpolates a color from a list of colors.
+            </summary>
+            <param name="value">The value relative to the gradient stop offsets.</param>
+            <param name="stops">The color stops sorted by the offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.AddPoint(System.UInt16[],System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Adds a heat map point to the intensity matrix.
+            </summary>
+            <param name="distanceMatrix">The distance matrix.</param>
+            <param name="size">The size of the distance matrix.</param>
+            <param name="x">x.</param>
+            <param name="y">y</param>
+            <param name="intensityMap">The intensity map.</param>
+            <param name="width">The width of the intensity map..</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.CreateDistanceMatrix(System.Int32)">
+            <summary>
+            Creates the distance matrix.
+            </summary>
+            <param name="size">The size of the matrix (must be and odd number).</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.QueryLegendInfos(System.Action{ESRI.ArcGIS.Client.LayerLegendInfo},System.Action{System.Exception})">
+            <summary>
+            Queries for the legend infos of a layer.
+            </summary>
+            <remarks>
+            The returned result is encapsulated in a <see cref="T:ESRI.ArcGIS.Client.LayerLegendInfo"/> object containing one legend item showing the heat map gradient.
+            </remarks>
+            <param name="callback">The method to call on completion.</param>
+            <param name="errorCallback">The method to call in the event of an error.</param>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.FullExtent">
+            <summary>
+            The full extent of the layer.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Intensity">
+            <summary>
+            Gets or sets the interval.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.HeatMapPoints">
+            <summary>
+            Gets or sets the heat map points.
+            </summary>
+            <value>The heat map points.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Gradient">
+            <summary>
+            Gets or sets the heat map gradient.
+            </summary>
+        </member>
+        <member name="E:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.LegendChanged">
+            <summary>
+            Occurs when the legend of the layer changed (i.e. when the the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.HeatMapLayer.Gradient"/> changed).
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindRotate">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Surrogate binder class for setting the angle/heading.
+            </remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindRotate.AngleProperty">
+            <summary>
+            Dependency property to assign the heading/angle of the place marker symbol.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindRotate.GetAngle(System.Windows.DependencyObject)">
+            <summary>
+            Get function for angle property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <returns>The current angle/heading value.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindRotate.SetAngle(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Set function for angle property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="value">The value to assign as the angle/heading.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindRotate.OnAngleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when the attached property is bound/changed.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindScale">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Surrogate binder class for setting the scale.
+            </remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindScale.ScaleProperty">
+            <summary>
+            Dependency property to assign the scale of the place marker symbol.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindScale.GetScale(System.Windows.DependencyObject)">
+            <summary>
+            Get function for scale property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <returns>The current scale value.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindScale.SetScale(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Set function for scale property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="value">The value to assign as the scale.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindScale.OnScaleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when the attached property is bound/changed.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateX">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Surrogate binder class for setting the translation along the X axis.
+            </remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateX.TranslateXProperty">
+            <summary>
+            Dependency property to assign the translation along the X axis of the place marker symbol.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateX.GetTranslateX(System.Windows.DependencyObject)">
+            <summary>
+            Get function for translate X property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <returns>The current translation value.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateX.SetTranslateX(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Set function for translate X property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="value">The value to assign as the translation.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateX.OnTranslateXChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when the attached property is bound/changed.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateY">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Surrogate binder class for setting the translation along the X axis.
+            </remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateY.TranslateYProperty">
+            <summary>
+            Dependency property to assign the translation along the Y axis of the place marker symbol.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateY.GetTranslateY(System.Windows.DependencyObject)">
+            <summary>
+            Get function for translate Y property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <returns>The current translation value.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateY.SetTranslateY(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Set function for translate Y property.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="value">The value to assign as the translation.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SurrogateBindTranslateY.OnTranslateYChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when the attached property is bound/changed.
+            </summary>
+            <param name="d">Dependency object.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.FeatureDefinition_ImageTypeNotSupported">
+            <summary>
+              Looks up a localized string similar to Image type &apos;{0}&apos; is not supported in Silverlight..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.Generic_UrlNotSet">
+            <summary>
+              Looks up a localized string similar to Url is not set..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.GeoRss_ReadingFeedFailed">
+            <summary>
+              Looks up a localized string similar to Error in reading the RSS feed..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.GraphicsLayer_GraphicsSourceCannotBeSetOnLayer">
+            <summary>
+              Looks up a localized string similar to Layer does not support setting the GraphicsSource Property..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.HeatMapLayer_IntensityLessThanOne">
+            <summary>
+              Looks up a localized string similar to Intensity cannot be less than one..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.KmlLayer_DocumentParsingFailed">
+            <summary>
+              Looks up a localized string similar to KML layer parsing document failed..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.KmlLayer_GroundOverlaysSublayer">
+            <summary>
+              Looks up a localized string similar to GroundOverlays.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.KmlLayer_PlacemarksSublayer">
+            <summary>
+              Looks up a localized string similar to Placemarks.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.KmlLayer_XDocumentReadFailed">
+            <summary>
+              Looks up a localized string similar to Unable to read KML source..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.MapService_SecurityException">
+            <summary>
+              Looks up a localized string similar to A security exception occurred while trying to connect to the &apos;{0}&apos; service. Make sure you have a cross domain policy file available at the root for your server that allows for requests from this application. If not, use a proxy page (handler) to broker communication..
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Properties.Resources.WebRequest_Canceled">
+            <summary>
+              Looks up a localized string similar to Request canceled..
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlExtendedData">
+            <summary>
+            Stores an extended data definition for a KML feature.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlExtendedData.ToString">
+            <summary>
+            Returns a string representation of the object.
+            </summary>
+            <returns>Returns the value of the object instead of the type information.</returns>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlExtendedData.Name">
+            <summary>
+            The name of the extended data variable.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlExtendedData.DisplayName">
+            <summary>
+            The optional display name for the extended data variable.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlExtendedData.Value">
+            <summary>
+            The value of the extended data variable.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer">
+            <summary>
+            GeoRSS Layer.
+            </summary>
+            <remarks>
+            <para>
+            Only <a href="http://www.georss.org/simple">GeoRSS-simple</a> feeds are supported.
+            Geometries are returned in Geographic WGS84. If you are displaying the feed
+            on top of a map in a different projection, they must be reprojected manually 
+            when the graphics collection gets features added.
+            </para>
+            <para>
+            The graphic will not have a symbol associated with them. You should specify
+            a renderer on this layer, or manually assign symbols to the graphics when
+            the graphics collection gets features added.
+            </para>
+            <para>
+            Recent earthquake's greater than M2.5 with map tips:<br/>
+            <code Lang="XAML">
+            &lt;esri:GeoRssLayer Source="http://earthquake.usgs.gov/earthquakes/catalogs/1day-M2.5.xml" &gt;
+              &lt;esri:GeoRssLayer.Renderer&gt;
+                &lt;esri:SimpleRenderer Brush="Red" /&gt;
+              &lt;/esri:GeoRssLayer.Renderer&gt;
+              &lt;esri:GeoRssLayer.MapTip&gt;
+                &lt;Border Padding="5" Background="White" esri:GraphicsLayer.MapTipHideDelay="0:0:0.5"&gt;
+                  &lt;StackPanel&gt;
+                    &lt;TextBlock Text="{Binding [Title]}" FontWeight="Bold" FontSize="12" /&gt;
+                    &lt;TextBlock Text="{Binding [Summary]}" FontSize="10" /&gt;
+                    &lt;HyperlinkButton Content="Link" NavigateUri="{Binding [Link]}" Opacity=".5" FontSize="10" TargetName="_blank" /&gt;
+                  &lt;/StackPanel&gt;
+                &lt;/Border&gt;
+              &lt;/esri:GeoRssLayer.MapTip&gt;
+            &lt;/esri:GeoRssLayer&gt;
+            </code>
+            </para>
+            <para>
+            If you require a proxy, simply prefix the layer URI with a proxy prefix:<br/>
+            <code Lang="XAML">
+            &lt;esri:GeoRssLayer Source="../proxy.ashx?url=http://earthquake.usgs.gov/earthquakes/catalogs/1day-M2.5.xml" /&gt;
+            </code>
+            </para>
+            <para>
+            The following attributes will be associated with each graphic:
+            </para>
+            <list type="bullet">
+            	<item>Title (<see cref="T:System.String"/>)</item>
+            	<item>Summary (<see cref="T:System.String"/>)</item> 
+            	<item>PublishDate (<see cref="T:System.DateTime"/>)</item>
+            	<item>Id (<see cref="T:System.String"/>)</item>
+            	<item>Link (<see cref="T:System.Uri"/>)</item>
+            	<item>FeedItem (<see cref="T:System.ServiceModel.Syndication.SyndicationItem"/>)</item>
+            </list>
+            <para>
+            Optionally, if the item is using any of the simple-georss extensions,
+            these will also be included:
+            </para>
+            <list type="bullet">
+            	<item>elev (<see cref="T:System.Double"/>)</item>
+            	<item>floor (<see cref="T:System.Int32"/>)</item>
+            	<item>radius (<see cref="T:System.Double"/>)</item>
+            	<item>featuretypetag (<see cref="T:System.String"/>)</item> 
+            	<item>relationshiptag (<see cref="T:System.String"/>)</item>
+            	<item>featurename (<see cref="T:System.String"/>)</item>
+            </list>
+            <para>
+            The Graphic's <see cref="P:ESRI.ArcGIS.Client.Graphic.TimeExtent"/> property 
+            will be set to a time instance matching the PublishDate.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.Initialize">
+            <summary>
+            Initializes the resource.
+            </summary>
+            <remarks>
+            	<para>Override this method if your resource requires asyncronous requests to initialize,
+            and call the base method when initialization is completed.</para>
+            	<para>Upon completion of initialization, check the <see cref="P:ESRI.ArcGIS.Client.Layer.InitializationFailure"/> for any possible errors.</para>
+            </remarks>
+            <seealso cref="E:ESRI.ArcGIS.Client.Layer.Initialized"/>
+            <seealso cref="P:ESRI.ArcGIS.Client.Layer.InitializationFailure"/>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.OnGraphicsSourceChanged(System.Collections.Generic.IEnumerable{ESRI.ArcGIS.Client.Graphic},System.Collections.Generic.IEnumerable{ESRI.ArcGIS.Client.Graphic})">
+            <summary>
+            Called when the GraphicsSource property changes.
+            </summary>
+            <param name="oldValue">Old value of the GraphicsSource property.</param>
+            <param name="newValue">New value of the GraphicsSource property.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="P:ESRI.ArcGIS.Client.GraphicsLayer.GraphicsSource"/>property is changed on a <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer"/>.</exception>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.SourceProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.Source"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.Update">
+            <summary>
+            Reloads the RSS feed from the endpoint.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.GeoRssLayer.Source">
+            <summary>
+            Gets or sets the URI for the RSS feed.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlGraphicsLayer">
+            <summary>
+            KML GraphicsLayer subclass for allowing legend based on the styles
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlGraphicsLayer.QueryLegendInfos(System.Action{ESRI.ArcGIS.Client.LayerLegendInfo},System.Action{System.Exception})">
+            <summary>
+            Queries for the legend infos of the layer.
+            </summary>
+            <remarks>
+            The returned result is encapsulated in a <see cref="T:ESRI.ArcGIS.Client.LayerLegendInfo"/> object.
+            </remarks>
+            <param name="callback">The method to call on completion.</param>
+            <param name="errorCallback">The method to call in the event of an error.</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.PngEncoder">
+            <summary>
+            PngEncoder class courtesy of Joe Stegman and opmized by Nikola:
+            http://blogs.msdn.com/nikola/archive/2009/03/04/silverlight-super-fast-dymanic-image-generation-code-revisited.aspx
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer">
+            <summary>
+            A layer for OGC Web Map Services.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer"/> class.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.ImageFormatProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.ImageFormat"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Initialize">
+            <summary>
+            Initializes this a WMS layer.  Calls GetCapabilities if SkipGetCapabilities is false. 
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.CreateLayerInfos(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Creates the list of layer infos from the layers XElement.
+            </summary>
+            <param name="layers">The layers XElement.</param>
+            <param name="ns">The nanespace name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.CreateLayerInfo(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Creates the layer info from the layer XElement.
+            </summary>
+            <param name="layer">The layer XElement.</param>
+            <param name="ns">The nanespace name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.GetUrl(ESRI.ArcGIS.Client.Geometry.Envelope,System.Int32,System.Int32,ESRI.ArcGIS.Client.DynamicMapServiceLayer.OnUrlComplete)">
+            <summary>
+            Gets the URL. Override from DynamicMapServiceLayer
+            </summary>
+            <param name="extent">The extent.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="onComplete">OnUrlComplete delegate.</param>
+            <remarks>
+            The Map has a private method loadLayerInView which calls Layer.Draw.   
+            The DynamicMapServiceLayer abstract class overrides the Draw method and calls 
+            DynamicMapServiceLayer.GetUrl which must be implemented in a subclass.   
+            The last parameter is the OnUrlComplete delegate, which is used to pass the appropriate values 
+            (url, width, height, envelope) to the private DynamicMapServiceLayer.getUrlComplete method.
+            </remarks>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.QueryLegendInfos(System.Action{ESRI.ArcGIS.Client.LayerLegendInfo},System.Action{System.Exception})">
+            <summary>
+            Queries for the legend infos of a layer.
+            </summary>
+            <remarks>
+            The returned result is encapsulated in a <see cref="T:ESRI.ArcGIS.Client.LayerLegendInfo"/> object.
+            This object represents the legend of the map service layer and contains a collection of LayerLegendInfos (one by sublayer)
+            </remarks>
+            <param name="callback">The method to call on completion.</param>
+            <param name="errorCallback">The method to call in the event of an error.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.CreateLegendInfos(System.Collections.Generic.IEnumerable{ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo})">
+            <summary>
+            Creates the list of legend infos from the layer infos.
+            </summary>
+            <param name="layerInfos">The layer infos.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.CreateLegendInfo(ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo)">
+            <summary>
+            Creates the legend info from a layer info.
+            </summary>
+            <param name="layerInfo">The layer info.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.GetLayerVisibility(System.Int32)">
+            <summary>
+            Gets the sub-layer visibility.
+            </summary>
+            <param name="layerID">The sub-layer ID.</param>
+            <returns>The sub-layer visibility</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SetLayerVisibility(System.Int32,System.Boolean)">
+            <summary>
+            Sets the sublayer visibility.
+            </summary>
+            <param name="layerID">The sublayer ID.</param>
+            <param name="visible">The sublayer visibility.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SetVisibleLayers">
+            <summary>
+            Init the visibility of the layers from the visibleLayers array
+            When a layer is in the array visibleLayers, it is visible (whatever the visibility of its parent) and all its descendants are visible
+            so in the LayerTree we have to set the visibility for all ascendants and all descendants.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Url">
+            <summary>
+            Required.  Gets or sets the URL to a WMS service endpoint.  
+            For example, 
+            http://sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer,
+            http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi.
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.ImageFormat">
+            <summary>
+            Gets or sets the image format being used by the service.
+            </summary>
+            <remarks>
+            The image format must be a supported MimeType name, supported by the service and the framework.
+            </remarks>
+            <example>
+            <code>
+            myWmsLayer.ImageFormat = "image/png";
+            </code>
+            </example>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SupportedImageFormats">
+            <summary>
+            Gets a collection of image formats supported by the WMS service.
+            </summary>
+            <remarks>
+            This property is only set after layer initialization completes and 
+            <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SkipGetCapabilities"/> is <c>false</c>.
+            </remarks>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Layers">
+            <summary>
+            Required. Gets or sets the unique layer ids in a WMS service.  
+            Each id is a string value.  At least one layer id must be defined.   
+            </summary>
+            <value>A string array of layer ids.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.ProxyUrl">
+            <summary>
+            Optional. Gets or sets the URL to a proxy service that brokers Web requests between the Silverlight 
+            client and a WMS service.  Use a proxy service when the WMS service is not hosted on a site that provides
+            a cross domain policy file (clientaccesspolicy.xml or crossdomain.xml).  You can also use a proxy to
+            convert png images to a bit-depth that supports transparency in Silverlight.  
+            </summary>
+            <value>The proxy URL string.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Version">
+            <summary>
+            Optional. Gets or sets the WMS version.  If SkipGetCapabilities property is set to true, this value determines version requested.  
+            If SkipGetCapabilities is false, this value determines version to retrieve.  If no value specified, default value returned from 
+            the site will be used.
+            </summary>
+            <value>The version string.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SkipGetCapabilities">
+            <summary>
+            Optional. Gets or sets a value indicating whether to skip a request to get capabilities. 
+            Default value is false.  Set SkipGetCapabilities if the site hosting the WMS service does not provide a
+            cross domain policy file and you do not have a proxy page.  In this case, you must set the WMS service version.
+            If true, the initial and full extent of the WMS Silverlight layer will not be defined.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Title">
+            <summary>
+            Gets or sets the title metadata for this service.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.Abstract">
+            <summary>
+            Gets the abstract metadata for this service.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerList">
+            <summary>
+            Gets a list of layers available in this service.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.SupportedSpatialReferenceIDs">
+            <summary>
+            Gets or sets the supported spatial reference IDs.
+            </summary>
+            <value>The supported spatial reference IDs.</value>
+        </member>
+        <member name="E:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LegendChanged">
+            <summary>
+            Occurs when the legend of the layer changed.
+            </summary>
+            <remarks>
+            Actually, for this kind of layer, the legend never changes after initialization.
+            </remarks>
+        </member>
+        <member name="E:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.VisibilityChanged">
+            <summary>
+            Occurs when the visibility of sublayers changed.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo">
+            <summary>
+            WMS LayerInfo
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="title">The title.</param>
+            <param name="legendUrl">The legend URL.</param>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.Name">
+            <summary>
+            Gets the name of the layer.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.Title">
+            <summary>
+            Gets the title of the layer.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.Abstract">
+            <summary>
+            Gets the abstract for the layer.
+            </summary>
+            <value>The abstract.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.Extent">
+            <summary>
+            Gets the extent of the layer.
+            </summary>
+            <value>The extent.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmsLayer.LayerInfo.ChildLayers">
+            <summary>
+            Gets the child layers.
+            </summary>
+            <value>The child layers.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition">
+            <summary>
+            Converts a KML document into a FeatureDefinition.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.Convert(ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayerContext,System.Net.ICredentials)">
+            <summary>
+            Takes features in the KML element and converts them into equivalent features
+            and adds them to the FeatureDefinition.
+            Only the direct children of the KML element are converted.
+            </summary>
+            <param name="context">Context containing the XElement with the KML definition to be converted.</param>
+            <param name="credentials">The credentials.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.DownloadStyleAsync(System.String,System.Net.ICredentials,System.Action{ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle})">
+            <summary>
+            Downloads KML file containing style, extracts style and creates feature definitions.
+            </summary>
+            <param name="styleUrl">Style id to locate in file.</param>
+            <param name="credentials">The credentials.</param>
+            <param name="callback">Callback to execture with the downloaded style</param>
+            <returns></returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.StyleDownloaded(System.Object,System.Net.OpenReadCompletedEventArgs)">
+            <summary>
+            Event handler invoked when an external KML file containing a style definition has been downloaded.
+            </summary>
+            <param name="sender">Sending object.</param>
+            <param name="e">Event arguments including error information and the input stream.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.GetKmzContents(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile)">
+            <summary>
+            Processes each file in the ZIP stream, storing images in a dictionary and load the KML contents
+            into an XDocument.
+            </summary>
+            <param name="zipFile">Decompressed stream from KMZ.</param>
+            <returns>XDocument containing KML content from the KMZ source.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.GetFeatureType(System.Xml.Linq.XElement)">
+            <summary>
+            Extracts the feature element from the Placemark.
+            </summary>
+            <param name="element">Placemark node that may contain a supported feature type node.</param>
+            <returns>XElement node containing a supported feature type definition.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractLatLonBox(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle,System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a polygon from the input element and applies style information to the placemark descriptor.
+            </summary>
+            <param name="kmlStyle">KML Style information.</param>
+            <param name="geomElement">Polygon geometry information.</param>
+            <returns>A PlacemarkDescriptor object representing the feature.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractEnvelope(System.Xml.Linq.XElement)">
+            <summary>
+            Extracts an envelope from the input element.
+            </summary>
+            <param name="geomElement">LatLonBox geometry information.</param>
+            <returns>An envelope.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractPolygon(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle,System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a polygon from the input element and applies style information to the placemark descriptor.
+            </summary>
+            <param name="kmlStyle">KML Style information.</param>
+            <param name="geomElement">Polygon geometry information.</param>
+            <returns>A PlacemarkDescriptor object representing the feature.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractLinearRing(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle,System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a linear ring from the input element and applies style information to the placemark descriptor.
+            </summary>
+            <param name="kmlStyle">KML Style information.</param>
+            <param name="geomElement">Linear ring geometry information.</param>
+            <returns>A PlacemarkDescriptor object representing the feature.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractPolyLine(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle,System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a polyline from the input element and applies style information to the placemark descriptor.
+            </summary>
+            <param name="kmlStyle">KML Style information.</param>
+            <param name="line">Polyline geometry information.</param>
+            <returns>A PlacemarkDescriptor object representing the feature.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractPoint(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle,System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a point from the input element and applies style information to the placemark descriptor.
+            </summary>
+            <param name="kmlStyle">KML Style information.</param>
+            <param name="point">Point geometry information.</param>
+            <returns>A PlacemarkDescriptor object representing the feature.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractRing(System.Xml.Linq.XElement)">
+            <summary>
+            Extracts a collection of points from a LinearRing definition.
+            </summary>
+            <param name="boundary">Outer or Inner boundary XElement object.</param>
+            <returns>A PointCollection containing MapPoint objects.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractCoordinates(System.Xml.Linq.XElement)">
+            <summary>
+            Extracts the X and Y values from a comma delimited string containing multiple coordinates.
+            </summary>
+            <param name="coordinates">Comma delimited string containing multiple coordinate groups.</param>
+            <returns>A PointCollection containing MapPoint objects.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ExtractCoordinate(System.String)">
+            <summary>
+            Extracts the X and Y values from a comma delimited string containing a single coordinate.
+            </summary>
+            <param name="coordinate">Comma delimited string containing X, Y and Z values.</param>
+            <returns>A MapPoint object with X and Y coordinate values assigned.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.GetStyleMapAsync(System.Xml.Linq.XElement,System.Xml.Linq.XDocument,System.Net.ICredentials,System.Action{ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle})">
+            <summary>
+            Gets the 'normal' style of a style map.
+            Getting this style may need recursive download.
+            When the style is ready -> execute the callback.
+            </summary>
+            <remarks>
+            The 'highlight' style is not used by the KmlLayer.
+            </remarks>
+            <param name="styleMap">The style map element to parse.</param>
+            <param name="xDoc">The xDocument the style map is part of.</param>
+            <param name="credentials">The credentials.</param>
+            <param name="callback">The callback to call when the style is downloaded (if needed).</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.GetStyle(System.Xml.Linq.XElement,ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle)">
+            <summary>
+            Constructs a KMLStyle object that represents KML style contained in the input XElement.
+            </summary>
+            <param name="style">XElement containing KML style definition.</param>
+            <param name="kmlStyle">KMLStyle object representing input style.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.StringToBool(System.String)">
+            <summary>
+            Converts a string containing an integer value into a boolean.
+            </summary>
+            <param name="s">String containing boolean in numeric format.</param>
+            <returns>Boolean value extracted from the input string.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.GetColorFromHexString(System.String)">
+            <summary>
+            Converts hexadecimal color notation into equivalent Silverlight Color.
+            </summary>
+            <param name="s">Input color string in hexadecimal format.</param>
+            <returns>Color object representing input string.</returns>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.ProxyUrl">
+            <summary>
+            Optional. Gets or sets the URL to a proxy service that brokers Web requests between the Silverlight 
+            client and a KML file.  Use a proxy service when the KML file is not hosted on a site that provides
+            a cross domain policy file (clientaccesspolicy.xml or crossdomain.xml).
+            </summary>
+            <value>The Proxy URL string.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.DownloadStyleState">
+            <summary>
+            This stores the state of the currently processed KML feature while its style information is
+            downloaded from an external source.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.WaitHelper">
+            <summary>
+            Helper class to wait for the end of styles downloads
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlToFeatureDefinition.WaitHelper.Wait">
+            <summary>
+            Waits for the styles.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer">
+            <summary>
+            Extracts features from KML source and render as a group layer containing graphics layers for the placemarks,
+            element layers for the ground overlays and sub KML layers for the folders, the documents and the networklinks defined in the KML document. 
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.ProjectionServiceProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.ProjectionService"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.#ctor(ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer"/> class which will be a child of another <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer"/>.
+            </summary>
+            <param name="parentLayer">The parent layer.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.Initialize">
+            <summary>
+            Initializes the resource.
+            </summary>
+            <seealso cref="E:ESRI.ArcGIS.Client.Layer.Initialized"/>
+            <seealso cref="P:ESRI.ArcGIS.Client.Layer.InitializationFailure"/>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.SetSource(System.IO.Stream)">
+            <summary>
+            Sets the KML stream source.
+            </summary>
+            <param name="stream">A stream to a KML or KMZ file.</param>
+            <remarks>
+            Use this method if you need to load KML from a local file or
+            file stream.
+            </remarks>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.Refresh">
+            <summary>
+            Refreshes the KML layer by downloading and parsing the KML document.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.SetVisibilityByIDs(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+             Set the folders visibility from an enumeration of Ids.
+             These Ids are those used by the webmaps.
+            </summary>
+             <param name="IDs">Enumeration of visible folder ID.</param>
+             <remarks>This method is mainly useful for the webmap serializer</remarks>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.GenerateVisibilityIDs">
+            <summary>
+             Generate the IDs of the folder that are currently visible.
+            </summary>
+            <returns>The enumeration of visible folder IDs</returns>
+             <remarks>This method is mainly useful for the webmap serializer</remarks>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.DownloadContent(System.Uri)">
+            <summary>
+            Download content using URL. This method may be called recursively if the KML file contains
+            a network link.
+            </summary>
+            <param name="url">Location of KML content.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.webclient_OpenReadCompleted(System.Object,System.Net.OpenReadCompletedEventArgs)">
+            <summary>
+            Event handler for when the KML file is completely downloaded. If the KML content contains a
+            network link, then the linked content will be downloaded recursively. If no network link is
+            detected, then the KML content is converted into a feature definition using the engine and
+            eventually rendered as graphic g.
+            </summary>
+            <param name="sender">Sending object.</param>
+            <param name="e">Stream containing KML content.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.GetKmzContents(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ZipFile)">
+            <summary>
+            Processes each file in the ZIP stream, storing images in a dictionary and load the KML contents
+            into an XDocument.
+            </summary>
+            <param name="zipFile">Decompressed stream from KMZ.</param>
+            <returns>XDocument containing KML content from the KMZ source.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.StartRefreshTimer(System.TimeSpan)">
+            <summary>
+            Start the timer to refresh the layer
+            </summary>
+            <param name="refreshInterval">Refresh interval.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.KmlLayer_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles the PropertyChanged event of the KmlLayer.
+            Loads and parses the KML source as soon as the layer is visible.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.QueryLegendInfos(System.Action{ESRI.ArcGIS.Client.LayerLegendInfo},System.Action{System.Exception})">
+            <summary>
+            Queries for the legend infos of the layer.
+            </summary>
+            <remarks>
+            The returned result is encapsulated in a <see cref="T:ESRI.ArcGIS.Client.LayerLegendInfo"/> object.
+            A group layer returns only one item describing the group layer (the legends of the sublayers are not returned by this method) 
+            </remarks>
+            <param name="callback">The method to call on completion.</param>
+            <param name="errorCallback">The method to call in the event of an error (cant' happen with a group layer).</param>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.Url">
+            <summary>
+            Gets or sets the Url to the KML document.
+            </summary>
+            <seealso cref="M:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.SetSource(System.IO.Stream)"/>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.ProxyUrl">
+            <summary>
+            Optional. Gets or sets the URL to a proxy service that brokers Web requests between the Silverlight 
+            client and a KML file.  Use a proxy service when the KML file is not hosted on a site that provides
+            a cross domain policy file (clientaccesspolicy.xml or crossdomain.xml).
+            </summary>
+            <value>The Proxy URL string.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.DisableClientCaching">
+            <summary>Disables caching an KLM document on the client.</summary>
+            <remarks>
+            <para>
+            The default value is false. If true, adds a timestamp parameter ("_ts") to the request to prevent 
+            loading a KML document from the browser's cache.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.MapTip">
+            <summary>
+            Gets or sets the MapTip displayed when the mouse hovers on a 
+            <see cref="T:ESRI.ArcGIS.Client.Graphic">Graphic</see> in the KmlLayer (or its sublayers).
+            </summary>
+            <seealso cref="P:ESRI.ArcGIS.Client.GraphicsLayer.MapTip"/>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.Graphics">
+            <summary>
+            Gets the graphics from all sublayers of this KML layer.
+            </summary>
+            <remarks>Only the graphics already downloaded are returned.</remarks>
+            <value>The graphics.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.FullExtent">
+            <summary>
+            The full extent of the layer
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.Name">
+            <summary>
+            Gets the name of the KML document.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.ProjectionService">
+            <summary>
+            Gets or sets the projection service used for projecting geometry in the data source
+            to the map's spatial reference. 
+            </summary>
+            <remarks>
+            If you are projecting between WGS84 Geographic coordinates (SRID=4326) and WebMercator
+            or your source data is in the same projection as the map it's being displayed on, 
+            there is no need to set this property.
+            </remarks>
+            <value>The projection service.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.VisibleLayers">
+            <summary>
+            Gets or sets the names of the KML sublayers that have to be initialized as visible.
+            If this property is not set, the visibility defined in the KML document is used.
+            </summary>
+            <remarks>The wildcard "*" allows to set all descendant layers as visible.
+            <para>
+            For examples:
+            <list type="bullet">
+            <item>
+            VisibleLayers="*" sets all sublayers as visible</item>
+            <item>
+            VisibleLayers="folder/*" set all sublayers under 'folder' as visible</item>
+            <item>
+            VisibleLayers="folder,folder/*" sets 'folder' and all its sublayers as visible</item>
+            </list>
+            </para>
+            <para>Note that this list is a configuration property and doesn't return the sublayers that are currently visible.
+            To know whether a sublayer is currently visible, you have to go through the layers hierarchy and get the current visibility of the layer.
+            </para>
+            </remarks>
+            <value>The visible layers enumeration.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayer.RefreshInterval">
+            <summary>
+            Gets or sets the refresh interval.
+            </summary>
+            <value>The refresh interval.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayerContext">
+            <summary>
+            Class with infos needed to be able to refresh and reparse a KML layer
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayerContext.Element">
+            <summary>
+            Gets or sets the element (document, folder or NetworkLink) corresponding to the KML layer..
+            </summary>
+            <value>The element.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayerContext.AtomAuthor">
+            <summary>
+            Gets or sets the atom author of the XElement or inherited from parents.
+            </summary>
+            <value>The atom author.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.KmlLayerContext.AtomHref">
+            <summary>
+            Gets or sets the atom href of the XElement or inherited from parents.
+            </summary>
+            <value>The atom href.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer">
+            <summary>
+            A layer that conforms to the Web Map Tiling Service (WMTS)  
+            <a href="http://www.opengeospatial.org" target="_blank">Open GIS Consortium (OGC)</a> standard. WMTS is a 
+            cached service that accesses pre-created tiles from a cache on a server’s hard drive instead of 
+            dynamically rendering images.
+            </summary>
+            <remarks>
+            <para>
+            The full WMTS standard can be found on the 
+            <a href="http://www.opengeospatial.org/standards/wmts" target="_blank">OpenGIS Web Map Tile Service Implementation Standard</a> 
+            web page. As of ArcGIS Server version 10.1 serving WMTS layers as a native REST service is supported.
+            </para>
+            <para>
+            In order to consume a WmtsLayer successfully the following Properties must be set:
+            </para>
+            <list type="bullet">
+              <item>
+              <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Url">Url</see> (The WMTS service endpoint.)
+              </item>
+              <item>
+              <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ServiceMode">ServiceMode</see> (The WMTS 
+              service communication protocol.)
+              </item>
+            </list>
+            <para>
+            There are however several other optional Properties/Methods/Events that should also be set in order to 
+            avoid problems consuming a WmtsLayer, they are:
+            </para>
+            <list type="bullet">
+              <item>
+              <see cref="E:ESRI.ArcGIS.Client.Layer.Initialized">Initialized</see> Method (Method raised when 
+              WmtsLayer is being created on the client; useful to get or change information about the layer.)
+              </item>
+              <item>
+              <see cref="E:ESRI.ArcGIS.Client.Layer.InitializationFailed">InitializationFailed</see> Event (Method 
+              raised if the WmtsLayer has a problem being created.)
+              </item>
+              <item>
+              <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ProxyUrl">ProxyUrl</see> Property (A proxy 
+              service to broker web requests between the WMTS service and the web client.)
+              </item>
+              <item>
+              <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Layer">Layer</see> Property (Name of a 
+              single layer in a WMTS service; there can be multiple layers per service.)
+              </item>
+              <item>
+              <see cref="P:ESRI.ArcGIS.Client.Layer.ID">ID</see> Property (The unique ID of the layer in the Map control.)
+              </item>
+            </list>
+            <para>
+            A single WMTS service can have multiple layers. For each WmtsLayer instance, only one layer is drawn at a 
+            time. In order to discover what layers are available in a WMTS service, append the string 
+            '?request=GetCapabilities&amp;service=WMTS&amp;version=1.0.0' to what would be supplied for the WmtsLayer.Url Property 
+            in the address bar of a web browser and the full details will be provided in an XML document. A few example 
+            strings of obtaining the capabilities of a WMTS service are:
+            </para>
+            <list type="bullet">
+              <item>
+              http://v2.suite.opengeo.org/geoserver/gwc/service/wmts?request=GetCapabilities&amp;service=WMTS&amp;version=1.0.0
+              </item>
+              <item>
+              http://MyTestServer:6080/arcgis/rest/services/cachedservices/MyTestWMTSService/MapServer/WMTS?request=GetCapabilities&amp;service=WMTS&amp;version=1.0.0
+              </item>
+            </list>
+            <para>
+            By default if the WmtsLayer.Layer Property is not specified, the first layer respecting the 
+            WmtsLayer.TileMatrixSet will be used. When specifying the WmtsLayer.Layer Property at runtime in the 
+            code-behind, the WmtsLayer’s Refresh Method fires which in turn invokes the WmtsLayer’s Initialized Event 
+            which will cause a re-draw of the layer in the Map Control.
+            </para>
+            <para>
+            It is important to specify the correct 
+            <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsServiceMode">WmtsLayer.WmtsServiceMode</see> 
+            Enumeration in the WmtsLayer.ServiceMode Property or the WmtsLayer may not be created properly. The two 
+            available WmtsLayer.WmtsServiceMode Enumeration options available are <b>KVP</b> and <b>RESTful</b>. WMTS 
+            services provided by ArcGIS Server produce <b>RESTful</b> WmtsLayer.WmtsServiceMode services. The 
+            <b>KVP</b> WmtsLayer.WmtsServiceMode means HTTP 'Key/Value Pair' encoding; details on this OGC specification 
+            can found by downloading the 
+            <a href="http://portal.opengeospatial.org/files/?artifact_id=36263&amp;version=2format=pdf" target="_blank">WCS Extension -- KVP Protocol</a> 
+            document.
+            </para>
+            <para>
+            A call to the WmtsLayer is Asynchronous. As a result, this means that you cannot obtain valid Read (VB.NET) 
+            or get (C#) Property values until information has been returned from a WMTS server to the Client application. 
+            You can safely obtain valid Read/get Property information in the Initialized, PropertyChanged, 
+            TileLoaded, and TileLoading Events or from a function/sub/method that occurs after these Events fire. If you 
+            try to obtain Read/get Property information before these Events fire you will obtain invalid or null/Nothing 
+            information for the particular Property in question. 
+            </para>
+            </remarks>
+            <example>
+            <para>
+            <b>How to use:</b>
+            </para>
+            <para>
+            Select a layer name in the ListBox and click the 'Get WMTSLayer information' button to display various 
+            WMTSLayer and WMTSLayer.LayerInfo Property information. The Map will automatically zoom to the Extent 
+            of the layer. Properties with the words '[Count]' gives the count of the number of items in an 
+            IEnumerable; more coding could be done in the code-behind to dig deeper into the collection.
+            </para>
+            <para>
+            The XAML code in this example is used in conjunction with the code-behind (C# or VB.NET) to demonstrate
+            the functionality.
+            </para>
+            <para>
+            The following screen shot corresponds to the code example in this page.
+            </para>
+            <para>
+            <img border="0" alt="Example of displaying a WmtsLayer and detailed information about the service." src=" C:\ArcGIS\dotNET\API SDK\v2x-branch\ArcGISSilverlightSDK\LibraryReference\images\Client.Toolkit.DataSources.WmtsLayer.png"/>
+            </para>
+            <code title="Example XAML1" description="" lang="XAML">
+            &lt;Grid x:Name="LayoutRoot" Background="White"&gt;
+              
+              &lt;!-- Add a Map Control. --&gt;
+              &lt;esri:Map Background="White" HorizontalAlignment="Left" Name="Map1" 
+                        VerticalAlignment="Top" WrapAround="True" Height="400" Width="775" Margin="12,80,0,0"&gt;
+                &lt;esri:Map.Layers&gt;
+                  &lt;esri:LayerCollection&gt;
+                      
+                    &lt;!-- 
+                    Add a sample WmtsLayer. Setting the 'ID' Property is good if you want to access the WmtsLayer in code-behind.
+                    It is mandatory that you set the correct 'ServiceMode' Property. Setting the 'InitializationFailed' Event is useful
+                    to troubleshoot if the WmtsLayer fails to load. A 'ProxyUrl' is needed to test this particular service; it is not
+                    always necessary depending on your configuration (i.e. local web service internal to your network). Use the 
+                    'Initialized' Method to gain access to various Properties/Methods of the WmtsLayer.
+                    --&gt;
+                    &lt;esri:WmtsLayer ID="WMTS1"
+                                    Url="http://v2.suite.opengeo.org/geoserver/gwc/service/wmts"
+                                    Initialized="WmtsLayer_Initialized"
+                                    ProxyUrl="http://serverapps.esri.com/SilverlightDemos/ProxyPage/proxy.ashx"
+                                    InitializationFailed="WmtsLayer_InitializationFailed"
+                                    ServiceMode="KVP"
+                                    /&gt;
+                  &lt;/esri:LayerCollection&gt;
+                &lt;/esri:Map.Layers&gt;
+              &lt;/esri:Map&gt;
+              
+              &lt;!-- 
+              Add a Button to allow the user to change the sub-Layer that is displaying in the Map along with information
+              about the WmtsLayer service.
+              --&gt;
+              &lt;Button Content="Get WMTSLayer information" Height="23" HorizontalAlignment="Left" Margin="518,484,0,0" 
+                      Name="Button1" VerticalAlignment="Top" Width="269" Click="Button1_Click"/&gt;
+              &lt;ListBox Height="103" HorizontalAlignment="Left" Margin="519,513,0,0" Name="ListBox1" 
+                       VerticalAlignment="Top" Width="269" /&gt;
+              
+              &lt;!-- Display various WMTSLayer Property information. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="170,479,0,0" Name="Label_WMTSLayerProperties" 
+                         VerticalAlignment="Top" Width="199" Content="WMTSLayer Properties" FontSize="14" FontWeight="Bold"/&gt;
+              
+              &lt;!-- FullExtent--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,508,0,0" Name="Label_FullExtent" 
+                         VerticalAlignment="Top" Width="120" Content="FullExtent:" /&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,508,0,0" 
+                       Name="TextBox_FullExtent" VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!--Description--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,540,0,0" Name="Label_Description" 
+                         VerticalAlignment="Top" Width="88" Content="Description:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,536,0,0" Name="TextBox_Description" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!--ImageFormat--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,569,0,0" Name="Label_ImageFormat" 
+                         VerticalAlignment="Top" Width="88" Content="ImageFormat:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,565,0,0" Name="TextBox_ImageFormat" 
+                       VerticalAlignment="Top" Width="161" /&gt;
+              
+              &lt;!--Layer--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="268,565,0,0" Name="Label_Layer" 
+                         VerticalAlignment="Top" Width="88" Content="Layer:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="309,565,0,0" Name="TextBox_Layer" 
+                       VerticalAlignment="Top" Width="192" /&gt;
+              
+              &lt;!--LayerInfos--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,596,0,0" Name="Label_LayerInfos" 
+                         VerticalAlignment="Top" Width="140" Content="LayerInfos [Count]:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="119,593,0,0" Name="TextBox_LayerInfos" 
+                       VerticalAlignment="Top" Width="89" /&gt;
+              
+              &lt;!--ProxyUrl--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,625,0,0" Name="Label_ProxyUrl" 
+                         VerticalAlignment="Top" Width="88" Content="ProxyUrl:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,622,0,0" Name="TextBox_ProxyUrl" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!-- ServiceMode--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="225,597,0,0" Name="Label_ServiceMode" 
+                         VerticalAlignment="Top" Width="88" Content="ServiceMode:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="309,593,0,0" Name="TextBox_ServiceMode" 
+                       VerticalAlignment="Top" Width="192" /&gt;
+              
+              &lt;!--Style--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,650,0,0" Name="Label_Style" 
+                         VerticalAlignment="Top" Width="88" Content="Style:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,650,0,0" Name="TextBox_Style" 
+                       VerticalAlignment="Top" Width="161" /&gt;
+              
+              &lt;!--TileMatrixSet--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="268,654,0,0" Name="Label_TileMatrixSet" 
+                         VerticalAlignment="Top" Width="88" Content="TileMatrixSet:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="352,654,0,0" Name="TextBox_TileMatrixSet" 
+                       VerticalAlignment="Top" Width="149" /&gt;
+              
+              &lt;!--Title--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,688,0,0" Name="Label_Title" 
+                         VerticalAlignment="Top" Width="120" Content="Title:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,684,0,0" Name="TextBox_Title" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!--Token--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,717,0,0" Name="Label_Token" 
+                         VerticalAlignment="Top" Width="120" Content="Token:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,713,0,0" Name="TextBox_Token" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!--Url--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,746,0,0" Name="Label_Url" 
+                         VerticalAlignment="Top" Width="120" Content="Url:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,742,0,0" Name="TextBox_Url" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              &lt;!--Version--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="7,775,0,0" Name="Label_Version" 
+                         VerticalAlignment="Top" Width="120" Content="Version:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="101,771,0,0" Name="TextBox_Version" 
+                       VerticalAlignment="Top" Width="400" /&gt;
+              
+              
+              &lt;!--Display detailed WMTSLayer.LayerInfo about the specific sub-Layer that is being displayed. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="543,622,0,0" Name="Label_WMTSLayerLayerInfo" 
+                         VerticalAlignment="Top" Width="187" Content="WMTSLayer.LayerInfo" FontSize="14" FontWeight="Bold" /&gt;
+              
+              &lt;!--Abstract--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="511,656,0,0" Name="Label_Abstract" 
+                         VerticalAlignment="Top" Width="50" Content="Abstract:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="569,652,0,0" Name="TextBox_Abstract" 
+                       VerticalAlignment="Top" Width="67" /&gt;
+              
+              &lt;!--Formats--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="642,654,0,0" Name="Label_Formats" 
+                         VerticalAlignment="Top" Width="97" Content="Formats [Count]:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="743,652,0,0" Name="TextBox_Formats" 
+                       VerticalAlignment="Top" Width="44" /&gt;
+              
+              &lt;!--Identifier--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="508,683,0,0" Name="Label_Identifier" 
+                         VerticalAlignment="Top" Width="60" Content="Identifier:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="571,684,0,0" Name="TextBox_Identifier" 
+                       VerticalAlignment="Top" Width="216" /&gt;
+              
+              &lt;!--Styles--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="511,713,0,0" Name="Label_Styles" 
+                         VerticalAlignment="Top" Width="86" Content="Styles [Count]:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="603,713,0,0" Name="TextBox_Styles" 
+                       VerticalAlignment="Top" Width="184" /&gt;
+              
+              &lt;!--TileMatrixSets--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="507,742,0,0" Name="Label_TileMatrixSets" 
+                         VerticalAlignment="Top" Width="129" Content="TileMatrixSets [Count]:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="642,740,0,0" Name="TextBox_TileMatrixSets" 
+                       VerticalAlignment="Top" Width="145" /&gt;
+              
+              &lt;!--Title--&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="513,768,0,0" Name="Label_Title2" 
+                         VerticalAlignment="Top" Width="48" Content="Title:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="554,769,0,0" Name="TextBox_Title2" 
+                       VerticalAlignment="Top" Width="236" /&gt;
+              
+              
+              &lt;!-- Provide the instructions on how to use the sample code. --&gt;
+              &lt;TextBlock Height="74" HorizontalAlignment="Left" Name="TextBlock1" VerticalAlignment="Top" Width="756" 
+                     TextWrapping="Wrap" Margin="12,12,0,0" 
+                     Text="Select a layer name in the ListBox and click the 'Get WMTSLayer information' button to display
+                     various WMTSLayer and WMTSLayer.LayerInfo Property information. The Map will automatically zoom to the
+                     Extent of the layer. Properties with the words '[Count]' gives the count of the number of items in 
+                     an IEnumerable; more coding could be done in the code-behind to dig deeper into the collection." /&gt;
+              
+            &lt;/Grid&gt;
+            </code>
+            <code title="Example CS1" description="" lang="CS">
+            private void Button1_Click(object sender, System.Windows.RoutedEventArgs e)
+            {
+              // This function takes the user choice for a specific WmtsLayer.Layer from a ListBox and refreshes 
+              // the Map using that layer.
+              
+              // Get the user choice for the name of the WmtsLayer.Layer.
+              string theTitle = ListBox1.SelectedItem.ToString();
+              
+              // Get the WmtsLayer that was defined in XAML.
+              ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer theWMTSLayer = (ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer)Map1.Layers["WMTS1"];
+              
+              // Set the specific layer to display in the WmtsLayer. This will internally cause a WmtsLayer.Refresh
+              // which in turn causes the WmtsLayer.Initialized Method to execute.
+              theWMTSLayer.Layer = theTitle;
+            }
+            
+            private void WmtsLayer_Initialized(object sender, System.EventArgs e)
+            {
+              // This function loops through all of the sub-Layers in a WmtsLayer service and displays information
+              // about the WmtsLayer service in general and details about a particular WmtsLayer.Layer specified
+              // by the user choice. This function initiates whenever the WmtsLayer first initializes or as a result 
+              // of specifying a different WmtsLayer.Layer. 
+              
+              // Clear out all of the sub-Layer names of the WmtsLayer service.
+              ListBox1.Items.Clear();
+              
+              // Get the WmtsLayer that was defined in XAML.
+              ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer theWMTSLayer = (ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer)Map1.Layers["WMTS1"];
+              
+              // Get all of the sub-Layer information from the WmtsLayer.
+              IEnumerable&lt;ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo&gt; theLayers = theWMTSLayer.LayerInfos;
+              if (theLayers != null)
+              {
+                foreach (ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo oneWMTSLayerInfo in theLayers)
+                {
+              	//Display the name of the WmtsLayer sub-Layer's in the ListBox. 
+              	ListBox1.Items.Add(oneWMTSLayerInfo.Title);
+                }
+              }
+              
+              // Set the Map.Extent to the WmtsLayer sub-Layer and display the numerical extent in a TextBox.
+              if (theWMTSLayer.FullExtent != null)
+              {
+                Map1.Extent = theWMTSLayer.FullExtent;
+                TextBox_FullExtent.Text = theWMTSLayer.FullExtent.ToString();
+              }
+              
+              // Display the Description of the WmtsLayer service.
+              if (theWMTSLayer.Description != null)
+              {
+                TextBox_Description.Text = theWMTSLayer.Description;
+              }
+              
+              // Display the ImageFormat of the WmtsLayer service.
+              if (theWMTSLayer.ImageFormat != null)
+              {
+                TextBox_ImageFormat.Text = theWMTSLayer.ImageFormat;
+              }
+              
+              // Display the currently displaying sub-Layer name of the WmtsLayer service.
+              if (theWMTSLayer.Layer != null)
+              {
+                TextBox_Layer.Text = theWMTSLayer.Layer;
+              }
+              
+              // Display the LayerInfos.Count of the WmtsLayer service. More information is available if you
+              // care to loop through the IEnumerable&lt;WmtsLayer.WmtsLayerInfo&gt; objects.
+              if (theWMTSLayer.LayerInfos != null)
+              {
+                TextBox_LayerInfos.Text = theWMTSLayer.LayerInfos.Count.ToString();
+              }
+              
+              // Display the ProxyUrl of the WmtsLayer service.
+              if (theWMTSLayer.ProxyUrl != null)
+              {
+                TextBox_ProxyUrl.Text = theWMTSLayer.ProxyUrl;
+              }
+              
+              // Display the ServiceMode Enumeration of the WmtsLayer service.
+              TextBox_ServiceMode.Text = theWMTSLayer.ServiceMode.ToString(); //An Enumeration.
+              
+              // Display the Style of the WmtsLayer service.
+              if (theWMTSLayer.Style != null)
+              {
+                TextBox_Style.Text = theWMTSLayer.Style;
+              }
+              
+              // Display the TileMatrix of the WmtsLayer service.
+              if (theWMTSLayer.TileMatrixSet != null)
+              {
+                TextBox_TileMatrixSet.Text = theWMTSLayer.TileMatrixSet;
+              }
+              
+              // Display the Title of the WmtsLayer service. Select the name of the Title in the ListBox to
+              // show which sub-Layer is currently being displayed in the Map.
+              if (theWMTSLayer.Title != null)
+              {
+                TextBox_Title.Text = theWMTSLayer.Title;
+                ListBox1.SelectedItem = theWMTSLayer.Title;
+              }
+              
+              // Display the Token of the WmtsLayer service.
+              if (theWMTSLayer.Token != null)
+              {
+                TextBox_Token.Text = theWMTSLayer.Token;
+              }
+              
+              // Display the Url of the WmtsLayer service.
+              if (theWMTSLayer.Url != null)
+              {
+                TextBox_Url.Text = theWMTSLayer.Url;
+              }
+              
+              // Display the Version of the WmtsLayer service.
+              if (theWMTSLayer.Version != null)
+              {
+                TextBox_Version.Text = theWMTSLayer.Version;
+              }
+              
+              // Get the WmtsLayer.Title from the user choice in the ListBox. This will be used to display detailed 
+              // information (WmtsLayer.WmtsLayerInfo) about the specific WmtsLayer.Layer currently being shown in the map.
+              string theTitle = null;
+              if (ListBox1.SelectedItem != null)
+              {
+                theTitle = ListBox1.SelectedItem.ToString();
+              }
+              
+              // Loop through all of the sub-Layers of the WmtsLayer and display WmtsLayer.WmtsLayerInfo Property
+              // information that match the user choice in the ListBox.
+              if (theLayers != null)
+              {
+                foreach (ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo oneWMTSLayerInfo in theLayers)
+                {
+                  if (oneWMTSLayerInfo.Title == theTitle)
+                  {
+                    // Display the Abstract of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    if (oneWMTSLayerInfo.Abstract != null)
+                    {
+                      TextBox_Abstract.Text = oneWMTSLayerInfo.Abstract;
+                    }
+                    
+                    // Display the Formats of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    // care to loop through the IEnumerable&lt;String&gt; objects.
+                    if (oneWMTSLayerInfo.Formats != null)
+                    {
+                      TextBox_Formats.Text = oneWMTSLayerInfo.Formats.Count.ToString();
+                    }
+                    
+                    // Display the Identifier of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    if (oneWMTSLayerInfo.Identifier != null)
+                    {
+                      TextBox_Identifier.Text = oneWMTSLayerInfo.Identifier;
+                    }
+                    
+                    // Display the Styles of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    // care to loop through the IEnumerable&lt;String&gt; objects.
+                    if (oneWMTSLayerInfo.Styles != null)
+                    {
+                      TextBox_Styles.Text = oneWMTSLayerInfo.Styles.Count.ToString();
+                    }
+                    
+                    // Display the TileMatrixSets of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    // care to loop through the IEnumerable&lt;String&gt; objects.
+                    if (oneWMTSLayerInfo.TileMatrixSets != null)
+                    {
+                      TextBox_TileMatrixSets.Text = oneWMTSLayerInfo.TileMatrixSets.Count.ToString();
+                    }
+                    
+                    // Display the Title of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    if (oneWMTSLayerInfo.Title != null)
+                    {
+                      TextBox_Title2.Text = oneWMTSLayerInfo.Title;
+                    }
+                  }
+                }
+              }
+            }
+            
+            private void WmtsLayer_InitializationFailed(object sender, System.EventArgs e)
+            {
+              // This function displays any error information of the WmtsLayer fails to load.
+              
+              ESRI.ArcGIS.Client.Layer aLayer = (ESRI.ArcGIS.Client.Layer)sender;
+              MessageBox.Show(aLayer.InitializationFailure.Message);
+            }
+            </code>
+            <code title="Example VB1" description="" lang="VB.NET">
+            Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+              
+              ' This function takes the user choice for a specific WmtsLayer.Layer from a ListBox and refreshes 
+              ' the Map using that layer.
+              
+              ' Get the user choice for the name of the WmtsLayer.Layer.
+              Dim theTitle As String = ListBox1.SelectedItem.ToString
+              
+              ' Get the WmtsLayer that was defined in XAML.
+              Dim theWMTSLayer As ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer = Map1.Layers("WMTS1")
+              
+              ' Set the specific layer to display in the WmtsLayer. This will internally cause a WmtsLayer.Refresh
+              ' which in turn causes the WmtsLayer.Initialized Method to execute.
+              theWMTSLayer.Layer = theTitle
+              
+            End Sub
+              
+            Private Sub WmtsLayer_Initialized(ByVal sender As System.Object, ByVal e As System.EventArgs)
+              
+              ' This function loops through all of the sub-Layers in a WmtsLayer service and displays information
+              ' about the WmtsLayer service in general and details about a particular WmtsLayer.Layer specified
+              ' by the user choice. This function initiates whenever the WmtsLayer first initializes or as a result 
+              ' of specifying a different WmtsLayer.Layer. 
+              
+              ' Clear out all of the sub-Layer names of the WmtsLayer service.
+              ListBox1.Items.Clear()
+              
+              ' Get the WmtsLayer that was defined in XAML.
+              Dim theWMTSLayer As ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer = Map1.Layers("WMTS1")
+              
+              ' Get all of the sub-Layer information from the WmtsLayer.
+              Dim theLayers As IEnumerable(Of ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo) = theWMTSLayer.LayerInfos
+              If theLayers IsNot Nothing Then
+                For Each oneWMTSLayerInfo As ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo In theLayers
+                  'Display the name of the WmtsLayer sub-Layer's in the ListBox. 
+                  ListBox1.Items.Add(oneWMTSLayerInfo.Title)
+                Next
+              End If
+              
+              ' Set the Map.Extent to the WmtsLayer sub-Layer and display the numerical extent in a TextBox.
+              If theWMTSLayer.FullExtent IsNot Nothing Then
+                Map1.Extent = theWMTSLayer.FullExtent
+                TextBox_FullExtent.Text = theWMTSLayer.FullExtent.ToString
+              End If
+              
+              ' Display the Description of the WmtsLayer service.
+              If theWMTSLayer.Description IsNot Nothing Then
+                TextBox_Description.Text = theWMTSLayer.Description
+              End If
+              
+              ' Display the ImageFormat of the WmtsLayer service.
+              If theWMTSLayer.ImageFormat IsNot Nothing Then
+                TextBox_ImageFormat.Text = theWMTSLayer.ImageFormat
+              End If
+              
+              ' Display the currently displaying sub-Layer name of the WmtsLayer service.
+              If theWMTSLayer.Layer IsNot Nothing Then
+                TextBox_Layer.Text = theWMTSLayer.Layer
+              End If
+              
+              ' Display the LayerInfos.Count of the WmtsLayer service. More information is available if you
+              ' care to loop through the IEnumerable(Of WmtsLayer.WmtsLayerInfo) objects.
+              If theWMTSLayer.LayerInfos IsNot Nothing Then
+                TextBox_LayerInfos.Text = theWMTSLayer.LayerInfos.Count.ToString
+              End If
+              
+              ' Display the ProxyUrl of the WmtsLayer service.
+              If theWMTSLayer.ProxyUrl IsNot Nothing Then
+                TextBox_ProxyUrl.Text = theWMTSLayer.ProxyUrl
+              End If
+              
+              ' Display the ServiceMode Enumeration of the WmtsLayer service.
+              TextBox_ServiceMode.Text = theWMTSLayer.ServiceMode.ToString 'An Enumeration.
+              
+              ' Display the Style of the WmtsLayer service.
+              If theWMTSLayer.Style IsNot Nothing Then
+                TextBox_Style.Text = theWMTSLayer.Style
+              End If
+              
+              ' Display the TileMatrix of the WmtsLayer service.
+              If theWMTSLayer.TileMatrixSet IsNot Nothing Then
+                TextBox_TileMatrixSet.Text = theWMTSLayer.TileMatrixSet
+              End If
+              
+              ' Display the Title of the WmtsLayer service. Select the name of the Title in the ListBox to
+              ' show which sub-Layer is currently being displayed in the Map.
+              If theWMTSLayer.Title IsNot Nothing Then
+                TextBox_Title.Text = theWMTSLayer.Title
+                ListBox1.SelectedItem = theWMTSLayer.Title
+              End If
+              
+              ' Display the Token of the WmtsLayer service.
+              If theWMTSLayer.Token IsNot Nothing Then
+                TextBox_Token.Text = theWMTSLayer.Token
+              End If
+              
+              ' Display the Url of the WmtsLayer service.
+              If theWMTSLayer.Url IsNot Nothing Then
+                TextBox_Url.Text = theWMTSLayer.Url
+              End If
+              
+              ' Display the Version of the WmtsLayer service.
+              If theWMTSLayer.Version IsNot Nothing Then
+                TextBox_Version.Text = theWMTSLayer.Version
+              End If
+              
+              ' Get the WmtsLayer.Title from the user choice in the ListBox. This will be used to display detailed 
+              ' information (WmtsLayer.WmtsLayerInfo) about the specific WmtsLayer.Layer currently being shown in the map.
+              Dim theTitle As String = Nothing
+              If ListBox1.SelectedItem IsNot Nothing Then
+                theTitle = ListBox1.SelectedItem.ToString
+              End If
+              
+              ' Loop through all of the sub-Layers of the WmtsLayer and display WmtsLayer.WmtsLayerInfo Property
+              ' information that match the user choice in the ListBox.
+              If theLayers IsNot Nothing Then
+                For Each oneWMTSLayerInfo As ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo In theLayers
+                  If oneWMTSLayerInfo.Title = theTitle Then
+                    
+                    ' Display the Abstract of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    If oneWMTSLayerInfo.Abstract IsNot Nothing Then
+                      TextBox_Abstract.Text = oneWMTSLayerInfo.Abstract
+                    End If
+                    
+                    ' Display the Formats of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    ' care to loop through the IEnumerable(Of String) objects.
+                    If oneWMTSLayerInfo.Formats IsNot Nothing Then
+                      TextBox_Formats.Text = oneWMTSLayerInfo.Formats.Count.ToString
+                    End If
+                    
+                    ' Display the Identifier of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    If oneWMTSLayerInfo.Identifier IsNot Nothing Then
+                      TextBox_Identifier.Text = oneWMTSLayerInfo.Identifier
+                    End If
+                    
+                    ' Display the Styles of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    ' care to loop through the IEnumerable(Of String) objects.
+                    If oneWMTSLayerInfo.Styles IsNot Nothing Then
+                      TextBox_Styles.Text = oneWMTSLayerInfo.Styles.Count.ToString
+                    End If
+                    
+                    ' Display the TileMatrixSets of the WmtsLayer.WmtsLayerInfo sub-Layer. More information is available if you
+                    ' care to loop through the IEnumerable(Of String) objects.
+                    If oneWMTSLayerInfo.TileMatrixSets IsNot Nothing Then
+                      TextBox_TileMatrixSets.Text = oneWMTSLayerInfo.TileMatrixSets.Count.ToString
+                    End If
+                    
+                    ' Display the Title of the WmtsLayer.WmtsLayerInfo sub-Layer.
+                    If oneWMTSLayerInfo.Title IsNot Nothing Then
+                      TextBox_Title2.Text = oneWMTSLayerInfo.Title
+                    End If
+                    
+                  End If
+                Next
+              End If
+              
+            End Sub
+              
+            Private Sub WmtsLayer_InitializationFailed(ByVal sender As System.Object, ByVal e As System.EventArgs)
+              
+              ' This function displays any error information of the WmtsLayer fails to load.
+              
+              Dim aLayer As ESRI.ArcGIS.Client.Layer = sender
+              MessageBox.Show(aLayer.InitializationFailure.Message)
+              
+            End Sub
+            </code>
+            </example>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer"/> class.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.UrlProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Url"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.TokenProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Token"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ServiceModeProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ServiceMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Initialize">
+            <summary>
+            Initializes this WMTS layer.  Calls GetCapabilities if SkipGetCapabilities is false. 
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.GetTileUrl(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns a URL to the specific tile in a WmtsLayer.
+            </summary>
+            <remarks>
+            <para>
+            A WmtsLayer is made up of multiple tiles (or images) that are automatically put together in 
+            a mosaic for display in a Map Control. The tiles are pre-generated on a WMTS server and can 
+            be accessed individually via a URL. In order to access the URL for a specific tile it is 
+            required to know the Level, Row, and Column information. As of ArcGIS Server version 10.1, 
+            serving WMTS layers as a native REST service is supported.
+            </para>
+            <para>
+            It is possible to obtain the complete list of various Level, Row, and Column input parameter 
+            values that can be used by the GetTileUrl Method by interrogating the XML information 
+            returned from a GetCapabilities request in the address bar of a web browser but this is 
+            tedious (see the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer">WmtsLayer</see> 
+            documentation for a few examples of using the GetCapabilities request). A programmatic way 
+            to determine the various Level, Row, and Column information can be obtained by writing some 
+            code-behind logic in the 
+            <see cref="E:ESRI.ArcGIS.Client.TiledLayer.TileLoading">WmtsLayer.TileLoading</see> Event 
+            (see the code example in this document).
+            </para>
+            <para>
+            If the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ProxyUrl">ProxyUrl</see> 
+            Property has been set to create the WmtsLayer, then the output return string of the GetTileUrl 
+            Method will have that ProxyUrl value inserted at the beginning.
+            </para>
+            <para>
+            <b>Note:</b> Using Methods are only available in code-behind. You cannot use a Method via XAML.
+            </para>
+            </remarks>
+            <example>
+            <para>
+            <b>How to use:</b>
+            </para>
+            <para>
+            After the WmtsLayer loads in the Map Control, the ListBox will be populated with all the 
+            combinations of 'Level, Row, and Column' tiles that make up the initial extent of the WmtsLayer 
+            image service. Click on any of the combinations in the Listbox and that particular tile will be 
+            displayed in an Image Control as well as the Url for that image.
+            </para>
+            <para>
+            The XAML code in this example is used in conjunction with the code-behind (C# or VB.NET) to demonstrate
+            the functionality.
+            </para>
+            <para>
+            The following screen shot corresponds to the code example in this page.
+            </para>
+            <para>
+            <img border="0" alt="Displaying individual tile images and their URL values for a WmtsLayer." src=" C:\ArcGIS\dotNET\API SDK\v2x-branch\ArcGISSilverlightSDK\LibraryReference\images\Client.Toolkit.DataSources.WmtsLayer.GetTileUrl.png"/>
+            </para>
+            <code title="Example XAML1" description="" lang="XAML">
+            &lt;Grid x:Name="LayoutRoot" &gt;
+              
+              &lt;!-- Provide the instructions on how to use the sample code. --&gt;
+              &lt;TextBlock Height="78" HorizontalAlignment="Left" Name="TextBlock1" VerticalAlignment="Top" Width="640" 
+                   TextWrapping="Wrap" Text="After the WmtsLayer loads in the Map Control, the ListBox will be populated with
+                   all the combinations of 'Level, Row, and Column' tiles that make up the initial extent of the WmtsLayer 
+                   image service. Click on any of the combinations in the Listbox and that particular tile will be 
+                   displayed in an Image Control as well as the Url for that image." /&gt;
+              
+              &lt;!-- The Map Control. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="33,160,0,0" Name="Label_MapControl" 
+                         VerticalAlignment="Top" Width="120" Content="Map Control:"/&gt;
+              &lt;esri:Map Background="White" HorizontalAlignment="Left" Margin="32,180,0,0" Name="Map1" 
+                        VerticalAlignment="Top" WrapAround="True" Height="320" Width="600"&gt;
+                &lt;esri:Map.Layers&gt;
+                  &lt;esri:LayerCollection&gt;
+                              
+                    &lt;!-- 
+                    Add a WmtsLayer. The use of a ProxyUrl is needed in addition to the regular Url property because the 
+                    WMTS service is not hosted on a site that provides a cross domain policy file (clientaccesspolicy.xml
+                    or crossdomain.xml). The InitializationFailed Event is used to notify the user in case the WMTS 
+                    service is down. The TileLoading Event provides details about individual tiles in the WMTS service
+                    that is necessary to get the input parameters (Level, Row, Column) of the WmtsLayer.GetTileUrl Method. 
+                    --&gt;
+                    &lt;esri:WmtsLayer ID="WMTS1" ServiceMode="KVP" Layer="usa:states"
+                                    Url="http://v2.suite.opengeo.org/geoserver/gwc/service/wmts"
+                                    ProxyUrl="http://serverapps.esri.com/SilverlightDemos/ProxyPage/proxy.ashx"
+                                    InitializationFailed="WmtsLayer_InitializationFailed"
+                                    TileLoading="WmtsLayer_TileLoading"/&gt;
+                  &lt;/esri:LayerCollection&gt;
+                &lt;/esri:Map.Layers&gt;
+              &lt;/esri:Map&gt;
+              
+              &lt;!-- ListBox results. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="33,512,0,0" Name="Label_ListBox1" 
+                         VerticalAlignment="Top" Width="194" Content="ListBox Control:"/&gt;
+              &lt;ListBox Height="93" HorizontalAlignment="Left" Margin="33,526,0,0" Name="ListBox1" 
+                       VerticalAlignment="Top" Width="194" SelectionChanged="ListBox1_SelectionChanged"/&gt;
+              
+              &lt;!-- TiledLayer.TileLoadEventsArgs. Level, Row, and Column. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="239,510,0,0" Name="Label_TileLoadEventArgs" 
+                         VerticalAlignment="Top" Width="120" Content="TileLoadEventArgs:"/&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="239,542,0,0" Name="Label_Level" 
+                         VerticalAlignment="Top" Width="48" Content="Level:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="293,536,0,0" Name="TextBox_Level" 
+                       VerticalAlignment="Top" Width="52" /&gt;
+              &lt;sdk:Label HorizontalAlignment="Left" Margin="239,564,0,208" Name="Label_Row" Width="48" Content="Row:"/&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="293,566,0,0" Name="TextBox_Row" 
+                       VerticalAlignment="Top" Width="51" /&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="239,602,0,0" Name="Label_Column" 
+                         VerticalAlignment="Top" Width="48" Content="Column:" /&gt;
+              &lt;TextBox Height="23" HorizontalAlignment="Left" Margin="293,596,0,0" Name="TextBox_Column" 
+                       VerticalAlignment="Top" Width="52" /&gt;
+              
+              &lt;!-- WmtsLayer.GetTileUrl results. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="32,631,0,0" Name="Label_GetTileUrl" 
+                         VerticalAlignment="Top" Width="344" Content="WmtsLayer.GetTileUrl:"/&gt;
+              &lt;TextBox Height="124" HorizontalAlignment="Left" Margin="32,648,0,0" Name="TextBox_GetTileUrl" 
+                       VerticalAlignment="Top" Width="344" TextWrapping="Wrap"/&gt;
+              
+              &lt;!-- Image Control results. --&gt;
+              &lt;sdk:Label Height="28" HorizontalAlignment="Left" Margin="384,508,0,0" Name="Label_ImageControl1" 
+                         VerticalAlignment="Top" Width="198" Content="Image Control:"/&gt;
+              &lt;Image Height="250" HorizontalAlignment="Left" Margin="382,522,0,0" Name="Image1" 
+                     Stretch="Fill" VerticalAlignment="Top" Width="250" /&gt;
+              
+            &lt;/Grid&gt;
+            </code>
+            <code title="Example CS1" description="" lang="CS">
+            private void WmtsLayer_InitializationFailed(object sender, System.EventArgs e)
+            {
+              // Notify the user if there is a failure with the WMTS service.
+              ESRI.ArcGIS.Client.Layer aLayer = (ESRI.ArcGIS.Client.Layer)sender;
+              MessageBox.Show(aLayer.InitializationFailure.Message);
+            }
+            
+            private void WmtsLayer_TileLoading(object sender, ESRI.ArcGIS.Client.TiledLayer.TileLoadEventArgs e)
+            {
+              // This Event will fire for each tile that is loaded in the Map Control. For instance, if it takes 4 tiled images
+              // to render the Map Control completely, then this Event will fire 4 times. As you Zoom In or Pan around to other
+              // geographic areas in the Map, this Event will continue to fire until all of the tiles have been processed. 
+              
+              // The e argument of the Event returns a TileLoadEventArgs object.
+              ESRI.ArcGIS.Client.TiledLayer.TileLoadEventArgs myTileLoadEventArgs = e;
+              
+              // Get the Tile's Level, Row, and Column Properties
+              int myLevel = myTileLoadEventArgs.Level;
+              int myRow = myTileLoadEventArgs.Row;
+              int myColumn = myTileLoadEventArgs.Column;
+              
+              // Generate a string that is comma delimited with the Level, Row, and Column values and add them to a Listbox.
+              string myString = myLevel.ToString() + "," + myRow.ToString() + "," + myColumn.ToString();
+              
+              // Do not add any duplicates.
+              if (! (ListBox1.Items.Contains(myString)))
+              {
+                ListBox1.Items.Add(myString);
+              }
+            }
+            
+            private void ListBox1_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+            {
+              // Get the SelectedItem from the Listbox and parse out the Level, Row, and Column arguments necessary to 
+              // obtain the Url for a specific tile.
+              string theConcatenatedString = ListBox1.SelectedItem;
+              string[] theParts = theConcatenatedString.Split(',');
+              int theLevel = Convert.ToInt32(theParts[0]);
+              int theRow = Convert.ToInt32(theParts[1]);
+              int theColumn = Convert.ToInt32(theParts[2]);
+              
+              // Update the Level, Row, and Column information in the TextBoxes for ease of viewing.
+              TextBox_Level.Text = theLevel.ToString();
+              TextBox_Row.Text = theRow.ToString();
+              TextBox_Column.Text = theColumn.ToString();
+              
+              // Get the WmtsLayer. 
+              ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer theWMTSLayer = (ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer)Map1.Layers["WMTS1"];
+              
+              // Obtain a specific tile Url from the WmtsLayer using the three arguments for the GetTileUrl Method.
+              string theGetTileUrl = theWMTSLayer.GetTileUrl(theLevel, theRow, theColumn);
+              TextBox_GetTileUrl.Text = theGetTileUrl;
+              
+              // Only process valid restults. 
+              if (theGetTileUrl != null)
+              {
+                // Set the specific tile's Url as the Image's Source. 
+                Uri myUri = new Uri(theGetTileUrl);
+                Image1.Source = new Imaging.BitmapImage(myUri);
+              }
+            }
+            </code>
+            <code title="Example VB1" description="" lang="VB.NET">
+            Private Sub WmtsLayer_InitializationFailed(ByVal sender As System.Object, ByVal e As System.EventArgs)
+              
+              ' Notify the user if there is a failure with the WMTS service.
+              Dim aLayer As ESRI.ArcGIS.Client.Layer = sender
+              MessageBox.Show(aLayer.InitializationFailure.Message)
+              
+            End Sub
+              
+            Private Sub WmtsLayer_TileLoading(ByVal sender As System.Object, ByVal e As ESRI.ArcGIS.Client.TiledLayer.TileLoadEventArgs)
+              
+              ' This Event will fire for each tile that is loaded in the Map Control. For instance, if it takes 4 tiled images
+              ' to render the Map Control completely, then this Event will fire 4 times. As you Zoom In or Pan around to other
+              ' geographic areas in the Map, this Event will continue to fire until all of the tiles have been processed. 
+              
+              ' The e argument of the Event returns a TileLoadEventArgs object.
+              Dim myTileLoadEventArgs As ESRI.ArcGIS.Client.TiledLayer.TileLoadEventArgs = e
+              
+              ' Get the Tile's Level, Row, and Column Properties
+              Dim myLevel As Integer = myTileLoadEventArgs.Level
+              Dim myRow As Integer = myTileLoadEventArgs.Row
+              Dim myColumn As Integer = myTileLoadEventArgs.Column
+              
+              ' Generate a string that is comma delimited with the Level, Row, and Column values and add them to a Listbox.
+              Dim myString As String = myLevel.ToString + "," + myRow.ToString + "," + myColumn.ToString
+              
+              ' Do not add any duplicates.
+              If Not ListBox1.Items.Contains(myString) Then
+                ListBox1.Items.Add(myString)
+              End If
+              
+            End Sub
+              
+            Private Sub ListBox1_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
+              
+              ' Get the SelectedItem from the Listbox and parse out the Level, Row, and Column arguments necessary to 
+              ' obtain the Url for a specific tile.
+              Dim theConcatenatedString As String = ListBox1.SelectedItem
+              Dim theParts As String() = Split(theConcatenatedString, ",")
+              Dim theLevel As Integer = CInt(theParts(0))
+              Dim theRow As Integer = CInt(theParts(1))
+              Dim theColumn As Integer = CInt(theParts(2))
+              
+              ' Update the Level, Row, and Column information in the TextBoxes for ease of viewing.
+              TextBox_Level.Text = theLevel.ToString
+              TextBox_Row.Text = theRow.ToString
+              TextBox_Column.Text = theColumn.ToString
+              
+              ' Get the WmtsLayer. 
+              Dim theWMTSLayer As ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer = Map1.Layers("WMTS1")
+              
+              ' Obtain a specific tile Url from the WmtsLayer using the three arguments for the GetTileUrl Method.
+              Dim theGetTileUrl As String = theWMTSLayer.GetTileUrl(theLevel, theRow, theColumn)
+              TextBox_GetTileUrl.Text = theGetTileUrl
+              
+              ' Only process valid restults. 
+              If theGetTileUrl IsNot Nothing Then
+                
+                ' Set the specific tile's Url as the Image's Source. 
+                Dim myUri As New Uri(theGetTileUrl)
+                Image1.Source = New Imaging.BitmapImage(myUri)
+                  
+              End If
+              
+            End Sub
+            </code>
+            </example>
+            <param name="level">Layer level</param>
+            <param name="row">Tile row</param>
+            <param name="col">Tile column</param>
+            <returns>URL to the tile image</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ReplaceParameter(System.String,System.String,System.String)">
+            <summary>
+            Replaces the parameter by its value. Make an insensitive replacement since I am not sure about the WMTS specifications.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="parameter">The parameter.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Url">
+            <summary>
+            Required.  Gets or sets the URL to a WMTS service endpoint.  
+            For example,
+            http://v2.suite.opengeo.org/geoserver/gwc/service/wmts
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Token">
+            <summary>Gets or sets the token for accessing a secure ArcGIS service.</summary>
+            <value>The token.</value>
+            <remarks>
+            ArcGIS Server services may be secured using token authentication. Use 
+            <a href="javascript:ApiToConcept('01660000001w000000', '01n700000004000000', '011v00000007000000')" target="_top">Services Directory</a> 
+            to determine if a service requires a
+            token to be used. A token is an encrypted string generated by a token service on the
+            same ArcGIS Server site and the secured service. The token service can be accessed in a
+            browser via the Get Token link in Services Explorer or by navigating to the main token
+            service page (e.g. <a href="http://www.example.com/ArcGIS/tokens/gettoken.html">http://www.example.com/ArcGIS/tokens/gettoken.html</a>).
+            See the discussion topic on 
+            <a href="javascript:ApiToConcept('016600000022000000', '01n700000022000000', '011v0000000n000000')" target="_top">secure services</a> 
+            for more info.
+            </remarks>
+            <example>
+            	<code lang="XAML">
+            		<![CDATA[
+            <esri:WmtsLayer ID="WmtsLayer"
+                Url="http://serverapps.esri.com/ArcGIS/rest/services/California/MapServer/WMTS" 
+                Token="T2ILopZdSMylbhKIysHa-8YgBVNPjRHsK-Kw3VoQS2RUQ0UpUAj30vGfT92YlEue" />]]>
+            	</code>
+            </example>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ProxyUrl">
+            <summary>
+            Optional. Gets or sets the URL to a proxy service that brokers Web requests between the Silverlight 
+            client and a WMTS service.  Use a proxy service when the WMTS service is not hosted on a site that provides
+            a cross domain policy file (clientaccesspolicy.xml or crossdomain.xml).  You can also use a proxy to
+            convert png images to a bit-depth that supports transparency in Silverlight.  
+            </summary>
+            <value>The proxy URL string.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ServiceMode">
+            <summary>
+            Gets or sets the service mode i.e. "KVP" or "RESTful". By default, it's "RESTful".
+            </summary>
+            <remarks>
+            If the mode doesn't match the service, it won't create the WMTS layer successfully. </remarks>
+            <value>The service mode.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Version">
+            <summary>
+            Optional. Gets or sets the WMTS version.
+            The default value is 1.0.0
+            </summary>
+            <remarks>At this time, the only possible value is 1.0.0 </remarks>
+            <value>The version string.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Layer">
+            <summary>
+            Gets or sets the layer identifier displayed by the WMTS service.
+            </summary>
+            <remarks>
+            If the layer is not set explicitely, the first layer respecting the TileMatrixSet will be used.</remarks>
+            <value>The layer.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.TileMatrixSet">
+            <summary>
+            Gets or sets the tile matrix set.
+            It defines the tileMatrixSet the layer will use. 
+            </summary>
+            <remarks>
+            If the tile matric set is not set explicitely, the first tile matrix set supported by the WMTS will be used.</remarks>
+            <value>The tile matrix set.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Style">
+            <summary>
+            Gets or sets the style to apply to the WMTS layer.
+            </summary>
+            <value>The style.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.ImageFormat">
+            <summary>
+            Gets or sets the image format used by the WMTS layer.
+            </summary>
+            <value>The image format.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.SkipGetCapabilities">
+            <summary>
+            Optional. Gets or sets a value indicating whether to skip a request to get capabilities. 
+            Default value is false.  Set SkipGetCapabilities if the site hosting the WMTS service does not provide a
+            cross domain policy file and you do not have a proxy page.  In this case, you must set the WMTS service version.
+            If true, the initial and full extent of the WMTS Silverlight layer will not be defined.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Title">
+            <summary>
+            The title of the currently active layer.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.Description">
+            <summary>
+            Gets or sets the description of the currently active layer.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.LayerInfos">
+            <summary>
+            An enumeration of WmtsLayerInfo describing the layers available for this WMTS service.
+            </summary>
+            <remarks>
+            This enumeration is only available if SkipGetCapabilities is false and after the layer is initialized.
+            </remarks>
+            <value>The layer infos.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.TileInfo">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsServiceMode">
+            <summary>
+            Indicates which architecture style is using the server : procedure oriented (KVP) or resource oriented (RESTFul)
+            </summary>
+            <remarks>The procedure oriented architecture style with SOAP encodings is not supported.</remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsServiceMode.KVP">
+            <summary>
+            The WMTS server operates in a procedure oriented architecture style.
+            HTTP GET Transfer of operation requests is using KVP (Key-Value-Pair) encodings.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsServiceMode.RESTful">
+            <summary>
+            The WMTS server operates in a resource oriented architecture style (REST).
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo">
+            <summary>
+            Information about a WMTS layer.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Identifier">
+            <summary>
+            Gets the identifier of the layer.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Title">
+            <summary>
+            Gets the title of the layer.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Abstract">
+            <summary>
+            Gets the abstract for the layer.
+            </summary>
+            <value>The abstract.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Formats">
+            <summary>
+            Gets the enumeration of image formats supported by the layer.
+            </summary>
+            <value>The formats.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Styles">
+            <summary>
+            Gets the enumeration of styles supported by the layer.
+            </summary>
+            <value>The styles.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.TileMatrixSets">
+            <summary>
+            Gets the enumeration of tile matrix sets supported by the layer.
+            </summary>
+            <value>The tile matrix sets.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.WmtsLayerInfo.Extent">
+            <summary>
+            Gets the extent of the layer.
+            </summary>
+            <value>The extent.</value>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.WmtsLayer.StyleInfo.Identifier">
+            <summary>
+            Gets the identifier of the style.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.XmlExtension">
+            <summary>
+            Helper XML extensions
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.XmlExtension.XPathSelectElement(System.Xml.Linq.XElement,System.String,System.Xml.Linq.XNamespace)">
+            <summary>
+            Very simplified version of querying an element by XPath.
+            Note : System.Xml.Xpath extensions doesn't exist for WP7
+            </summary>
+            <param name="element">The element.</param>
+            <param name="path">The path.</param>
+            <param name="ns">The ns.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle">
+            <summary>
+            Internal representation of a KML style element.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.CopyFrom(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle)">
+            <summary>
+            Copies a KML style object contents to another KML object.
+            </summary>
+            <param name="from">The source of the copy (contents copied to instance invoking this method).</param>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.StyleId">
+            <summary>
+            The unique id of the style. This is either the "id" of the Style node, the filename of an image if taken
+            from a KMZ file generated by ArcGIS REST, or a unique GUID for styles that are encountered "in-line" for
+            a point feature in order to link the feature to the style/icon for later processing.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHref">
+            <summary>
+            The href to the icon image used for a point feature.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHotspotX">
+            <summary>
+            The X coordinate for the location on the point image to anchor to the underlying geometry.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHotspotY">
+            <summary>
+            The Y coordinate for the location on the point image to anchor to the underlying geometry.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHotspotUnitsX">
+            <summary>
+            The unit type for the hotspot used to interpret the X value as pixels, fractions, etc.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHotspotUnitsY">
+            <summary>
+            The unit type for the hotspot used to interpret the Y value as pixels, fractions, etc.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconHeading">
+            <summary>
+            The angle of rotation for the point image between 0 and 360.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconScale">
+            <summary>
+            The scale of the point image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.IconImage">
+            <summary>
+            The bitmap image used to draw the point symbol.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.LineWidth">
+            <summary>
+            The width in pixels used to draw the line segment.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.LineColor">
+            <summary>
+            The color used to draw the line segment.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.PolyFill">
+            <summary>
+            If true the polygon will be filled with a color, if false it will not be filled.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.PolyOutline">
+            <summary>
+            If true the polygon outline will be drawn independently of the inside, if false it will not
+            be drawn.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.PolyFillColor">
+            <summary>
+            The color used to fill the polygon.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.BalloonText">
+            <summary>
+            If a style contains a BalloonStyle which also contains a text node, then that value is stored here and
+            then copied into the features' attributes collection using BalloonText as the key.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle.ZipFile">
+            <summary>
+            If the image used by a style is defined in a downlooaded kmz document, then the kmz document is stored here.
+            We can't just store the image since it doesn't go through the tread barrier.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SymbolDescriptor">
+            <summary>
+            Abstract base class used for each type of symbol descriptor.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.SymbolDescriptor.CreateSymbol">
+            <summary>
+            Method to create proper symbology for each feature type.
+            </summary>
+            <returns>A symbol defined by internal properties of the class.</returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PointSymbolDescriptor">
+            <summary>
+            Concrete class for point geometry symbols.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PointSymbolDescriptor.CreateSymbol">
+            <summary>
+            Method to create proper symbology for each feature type.
+            </summary>
+            <returns>A symbol defined by internal properties of the class.</returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.LineSymbolDescriptor">
+            <summary>
+            Concrete class for line geometry symbols.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.LineSymbolDescriptor.CreateSymbol">
+            <summary>
+            Method to create proper symbology for each feature type.
+            </summary>
+            <returns>A symbol defined by internal properties of the class.</returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PolygonSymbolDescriptor">
+            <summary>
+            Concrete class for polygon geometry symbols.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PolygonSymbolDescriptor.CreateSymbol">
+            <summary>
+            Method to create proper symbology for each feature type.
+            </summary>
+            <returns>A symbol defined by internal properties of the class.</returns>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor">
+            <summary>
+            Metadata storage for each placemark, assigned by KML engine.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor"/> class.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor.Geometry">
+            <summary>
+            Information that defines the feature geometry and its location.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor.Symbol">
+            <summary>
+            Information that defines the symbology of the feature.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor.Attributes">
+            <summary>
+            Attributes associated with the feature.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.NetworkLinkControl">
+            <summary>
+            NetworkLinkControl infos
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.GroundOverlayDescriptor">
+            <summary>
+            Metadata storage for each ground overlay, assigned by KML engine.
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition">
+            <summary>
+            Metadata storage for all elements in a KML file.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.Clear">
+            <summary>
+            Clear all features. This is invoked by the KML engine so that it can cleanly process multiple
+            KML files with each as a separate graphics layer.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.AddPlacemark(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.PlacemarkDescriptor)">
+            <summary>
+            Adds a placemark descriptor to the list.
+            </summary>
+            <param name="fd">Placemark description.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.AddStyle(System.String,ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KMLStyle)">
+            <summary>
+            Adds a KML style to the list.
+            </summary>
+            <param name="key">Unique key associated with the style, typically an id, filename or GUID.</param>
+            <param name="style">Style description.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.AddContainer(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.ContainerInfo)">
+            <summary>
+            Adds a container to the list.
+            </summary>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.AddGroundOverlay(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.GroundOverlayDescriptor)">
+            <summary>
+            Adds a grounoaverlay to the list.
+            </summary>
+            <param name="fd">The groundoverlay descriptor.</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.GetIconImage(System.String)">
+            <summary>
+            Returns the bitmap image brush associated with the icon href for the point feature.
+            </summary>
+            <param name="IconHref">Value used to obtain image from remote server via HTTP or key for image dictionary.</param>
+            <returns>A bitmap image brush or null if not found.</returns>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.CreateGraphics(ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlGraphicsLayer,System.Collections.Generic.IDictionary{System.String,System.Windows.Media.ImageBrush})">
+            <summary>
+            Creates graphic elements and adds them to the graphics layer.
+            </summary>
+            <param name="layer">Graphics layer that will have features added to it.</param>
+            <param name="images">Dictionary of images coming from kmz content or from previous parsing</param>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.FeatureDefinition.CreateGroundOverlays(ESRI.ArcGIS.Client.ElementLayer,System.Collections.Generic.IDictionary{System.String,System.Windows.Media.ImageBrush})">
+            <summary>
+            Createsground overlays and adds them to the element layer.
+            </summary>
+            <param name="layer">Element layer that will have overlays added to it.</param>
+            <param name="images">Dictionary of images coming from kmz content or from previous parsing</param>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer">
+            <summary>OpenStreetMap tiled layer.  Note, use of the OpenStreetMapLayer in your map application requires attribution.  Please read
+            the <a href="http://www.openstreetmap.org">usage guidelines</a> for using OpenStreetMap tile layers in your application.</summary>
+            <remarks>
+            	<para>To use an OpenStreetMap tile layer in your map, add the OpenStreetMapLayer, select a style, and add attribution. </para>
+            	<code language="XAML">
+            &lt;esri:Map x:Name="MyMap"&gt;
+                &lt;esri:OpenStreetMapLayer Style="Mapnik" /&gt;
+            &lt;/esri:Map&gt;<br/>&lt;esri:Attribution Layers="{Binding ElementName=MyMap, Path=Layers}" /&gt;
+            </code>
+            	<para>When including the OpenStreetMapLayer in your map application, you must also include attribution.  For the latest information, please read the <a href="http://www.openstreetmap.org">usage guidelines</a> for using OpenStreetMap tile layers in your application.</para>
+            	<para>OpenStreetMap is released under the Create Commons "Attribution-Share Alike 2.0 Generic" license.</para>
+            </remarks>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.cornerCoordinate">
+            <summary>Simple constant used for full extent and tile origin specific to this projection.</summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.WKID">
+            <summary>ESRI Spatial Reference ID for Web Mercator.</summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.subDomains">
+            <summary>Available subdomains for tiles.</summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.baseUrl">
+            <summary>Base URL used in GetTileUrl.</summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.#cctor">
+            <summary>
+            Initializes the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.Initialize">
+            <summary>
+            Initializes the resource.
+            </summary>
+            <remarks>
+            	<para>Override this method if your resource requires asyncronous requests to initialize,
+            and call the base method when initialization is completed.</para>
+            	<para>Upon completion of initialization, check the <see cref="P:ESRI.ArcGIS.Client.Layer.InitializationFailure"/> for any possible errors.</para>
+            </remarks>
+            <seealso cref="E:ESRI.ArcGIS.Client.Layer.Initialized"/>
+            <seealso cref="P:ESRI.ArcGIS.Client.Layer.InitializationFailure"/>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.GetTileUrl(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns a url to the specified tile
+            </summary>
+            <param name="level">Layer level</param>
+            <param name="row">Tile row</param>
+            <param name="col">Tile column</param>
+            <returns>URL to the tile image</returns>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.StyleProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.Style"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.Style">
+            <summary>
+            Gets or sets the map style.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.AttributionTemplate">
+            <summary>
+            Gets the attribution template of the layer.
+            </summary>
+            <value>The attribution template.</value>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.MapStyle">
+            <summary>
+            MapStyle
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.MapStyle.Mapnik">
+            <summary>
+            Mapnik
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.MapStyle.Osmarender">
+            <summary>
+            Osmarender
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.MapStyle.CycleMap">
+            <summary>
+            Cycle Map
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.OpenStreetMapLayer.MapStyle.NoName">
+            <summary>
+            No Name
+            </summary>
+        </member>
+        <member name="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol">
+            <summary>
+            Point symbol using a bitmap image for symbol
+            </summary>
+        </member>
+        <member name="M:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol"/> class.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.FillProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Fill"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.WidthProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Width"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.HeightProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Height"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.OpacityProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Opacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.HeadingProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Heading"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.ScaleProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Scale"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateXProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateX"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateYProperty">
+            <summary>
+            Identifies the <see cref="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateY"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Fill">
+            <summary>
+            Gets or sets Fill.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Width">
+            <summary>
+            Gets or sets the width of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Height">
+            <summary>
+            Gets or sets the height of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Opacity">
+            <summary>
+            Gets or sets the opacity of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Heading">
+            <summary>
+            Gets or sets the heading of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.Scale">
+            <summary>
+            Gets or sets the scale of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateX">
+            <summary>
+            Gets or sets the translation along the X axis of the image.
+            </summary>
+        </member>
+        <member name="P:ESRI.ArcGIS.Client.Toolkit.DataSources.Kml.KmlPlaceMarkerSymbol.TranslateY">
+            <summary>
+            Gets or sets the translation along the X axis of the image.
+            </summary>
+        </member>
+    </members>
+</doc>
