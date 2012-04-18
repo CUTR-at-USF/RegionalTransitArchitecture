@@ -1,4 +1,18 @@
-﻿using System;
+﻿//Copyright 2012 University of South Florida
+
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+
+//       http://www.apache.org/licenses/LICENSE-2.0
+
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -53,11 +67,9 @@ namespace Visualization
             };
             MyDrawObject.DrawComplete += myDrawObject_DrawComplete;
 
-            //new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/1");
-            //new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View/MapServer/4");
-            // Query Agency table
+            // Query Agency table - D7TRADM.CUTR4_AGENCY_SERVICE
             QueryTask hartAgencyQueryTask =
-                new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/0");
+                new QueryTask("http://dotsd7gispro.d7.dot.state.fl.us/arcgis/rest/services/Public_View/MapServer/0");
             hartAgencyQueryTask.ExecuteCompleted += HartAgencyQueryTask_ExecuteCompleted;
             hartAgencyQueryTask.Failed += QueryTask_Failed;
 
@@ -67,9 +79,9 @@ namespace Visualization
             hartQuery.ReturnGeometry = false;
             hartAgencyQueryTask.ExecuteAsync(hartQuery);
 
-            // Query Agency table
+            // Query Agency table - D7TRADM.CUTR4_AGENCY_SERVICE
             QueryTask pstaAgencyQueryTask =
-                new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/0");
+                new QueryTask("http://dotsd7gispro.d7.dot.state.fl.us/arcgis/rest/services/Public_View/MapServer/0");
             pstaAgencyQueryTask.ExecuteCompleted += PstaAgencyQueryTask_ExecuteCompleted;
             pstaAgencyQueryTask.Failed += QueryTask_Failed;
 
@@ -308,13 +320,11 @@ namespace Visualization
             pstaStopFeatureLayer.Update();
         }
 
-        // Query HART Route Information
-        //http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/7
-        //http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View/MapServer/10
+        // Query HART Route Information - D7TRADM.CUTR4_ROUTES_SERVICE
         private void HartQueryRoutes(string datasetId)
         {
             QueryTask routeQueryTask =
-                new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/6");
+                new QueryTask("http://dotsd7gispro.d7.dot.state.fl.us/arcgis/rest/services/Public_View/MapServer/5");
             routeQueryTask.ExecuteCompleted += HartRouteQueryTask_ExecuteCompleted;
             routeQueryTask.Failed += QueryTask_Failed;
 
@@ -353,11 +363,11 @@ namespace Visualization
             }
         }
 
-        // Query PSTA Route Information
+        // Query PSTA Route Information - D7TRADM.CUTR4_ROUTES_SERVICE
         private void PstaQueryRoutes(string datasetId)
         {
             QueryTask routeQueryTask =
-                new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/6");
+                new QueryTask("http://dotsd7gispro.d7.dot.state.fl.us/arcgis/rest/services/Public_View/MapServer/5");
             routeQueryTask.ExecuteCompleted += PstaRouteQueryTask_ExecuteCompleted;
             routeQueryTask.Failed += QueryTask_Failed;
 
@@ -396,13 +406,11 @@ namespace Visualization
             }
         }
 
-        // Query Trip table
-        //dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/0
-        //dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View/MapServer/0
+        // Query Trip table - D7TRADM.CUTR4_TRIPS_SERVICE
         private void QueryTrips(string datasetId, int agencyIndex)
         {
             QueryTask tripQueryTask =
-                new QueryTask("http://dotsd7gistest.d7.dot.state.fl.us/ArcGIS/rest/services/Public_View2/MapServer/10");
+                new QueryTask("http://dotsd7gispro.d7.dot.state.fl.us/arcgis/rest/services/Public_View/MapServer/1");
             if (agencyIndex == 0)
             {
                 tripQueryTask.ExecuteCompleted += HartTripQueryTask_ExecuteCompleted;
