@@ -10,3 +10,5 @@ With feedback from the regional transit agencies and FDOT D7, 3 different softwa
 2) A Regional Data Visualization Web Application (Web_App) - This software queries and visualizes the regional data from transit agencies and FDOT that is stored in the FDOT D7 spatial database. The application is accessible via a web browser and is capable of showing multimodal data for the regional transportation systems that is always based on the most recent data available from the transit agency.  It was written in C# and XAML using Visual Studio.NET, the Silverlight SDK 5, and the ArcGIS API for Silverlight 2.3.
 	
 3) An application for creating initial table for the D7 schema (FDOT7_Schema_Creation) - This software creates necessary tables with defined data types so that the Desktop Application can insert data into the FDOT D7 spatial database.
+
+Read more about the project at: https://github.com/CUTR-at-USF/RegionalTransitArchitecture/wiki
