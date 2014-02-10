@@ -26,3 +26,7 @@ With feedback from the regional transit agencies and FDOT D7, 3 different softwa
     tables with defined data types so that the Desktop Application can insert data into the FDOT D7 spatial database.
 
 Read more about the project at: https://github.com/CUTR-at-USF/RegionalTransitArchitecture/wiki
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/CUTR-at-USF/regionaltransitarchitecture/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
