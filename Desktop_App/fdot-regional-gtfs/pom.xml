@@ -146,7 +146,7 @@
         </dependency>
         <dependency>
             <groupId>arcsde</groupId>
-            <artifactId>arcsde3</artifactId>
+            <artifactId>arcsde4</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/concurrent.jar</systemPath>
