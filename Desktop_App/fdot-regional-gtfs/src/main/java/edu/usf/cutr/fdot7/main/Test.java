@@ -66,8 +66,8 @@ public class Test {
 	private FdotSchemaImpl schema;
 
 	/**
-	 * Get GTFS dataset from a specified URL
-	 * @param agencyUrl - GTFS dataset URL
+	 * Get GTFS dataset for a specific agency
+	 * @param ai - infor for a specific agency, including the GTFS URL
 	 */
 	private ArrayList<GenericGtfsData> getDataFromAgency(AgencyInfo ai) throws IOException{
 		ArrayList<GenericGtfsData> entities_data = null;
