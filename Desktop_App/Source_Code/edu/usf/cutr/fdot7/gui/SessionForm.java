@@ -215,8 +215,8 @@ public class SessionForm extends javax.swing.JDialog {
     			throw new Exception("Connection Failed!!");
     		}
     		
-    		Test.mainUsername = username;
-    		Test.mainPassword = password;
+//    		Test.mainUsername = username;
+//    		Test.mainPassword = password;
 
     		if(conn!=null){
 //    			_log.info("Close connection");
