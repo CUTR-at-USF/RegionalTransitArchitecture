@@ -1,4 +1,4 @@
-# fdot-region-gtfs Desktop App
+# fdot-region-gtfs Desktop App [![Build Status](https://travis-ci.org/CUTR-at-USF/RegionalTransitArchitecture.svg?branch=master)](https://travis-ci.org/CUTR-at-USF/RegionalTransitArchitecture)
 
 Source code for the GTFS Data Sync desktop application.  This software automatically retrieves the GTFS-based datasets from individual transit agency web servers and stores them in the FDOT D7 spatial database.  It was written in Java, using the OneBusAway GTFS library and the ArcSDE Java API 10.0 to insert data into an Oracle 10g spatial database.  We use Apache Maven for the build system.
 
