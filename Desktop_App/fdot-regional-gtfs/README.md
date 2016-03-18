@@ -2,6 +2,11 @@
 
 Source code for the GTFS Data Sync desktop application.  This software automatically retrieves the GTFS-based datasets from individual transit agency web servers and stores them in the FDOT D7 spatial database.  It was written in Java, using the OneBusAway GTFS library and the ArcSDE Java API 10.0 to insert data into an Oracle 10g spatial database.  We use Apache Maven for the build system.
 
+For additional documentation, see:
+
+* [Final report](http://www.nctr.usf.edu/wp-content/uploads/2013/01/77935.pdf)
+* [Powerpoint presentation](http://www.locationaware.usf.edu/wp-content/uploads/2012/08/Barbeau-Regional-Public-Transportation-GIS-Architecture-and-Data-Model-.pptx)
+
 ## Setup
 
 To compile the source code, you'll need:
