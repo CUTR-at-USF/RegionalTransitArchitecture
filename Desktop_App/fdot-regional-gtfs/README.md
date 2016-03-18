@@ -29,7 +29,7 @@ To build and run the project via Maven, execute the following commands:
 
 1. On the main menu, choose `File | Open`.
 2. In the dialog box that opens, select the `pom.xml` file in this directory, and click OK. In this case the import is performed automatically, with the settings defined in the Maven Integration dialog (see [this page](https://www.jetbrains.com/help/idea/2016.1/importing-project-from-maven-model.html?origin=old_help) for more details).
-3. To build and run the project, click on the green play button, or `Shift-F10`.
+3. To build and run the project, for the first time only you'll need to right click on `/src/main/java/edu.usf.cutr.fdot7/main/Test`, and choose "Run Test.main()".  After this, you can click on the green play button, or `Shift-F10` to run the project again.
 
 ## Configuration
 
