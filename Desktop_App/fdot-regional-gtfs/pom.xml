@@ -33,6 +33,10 @@
             <name>Open Source Geospatial Foundation Repository</name>
             <url>http://download.osgeo.org/webdav/geotools/</url>
         </repository>
+        <repository>
+            <id>my-local-repo</id>
+            <url>file://${basedir}/lib</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -127,29 +131,47 @@
             <groupId>arcsde</groupId>
             <artifactId>arcsde1</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jsde_sdk.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>arcsde</groupId>
             <artifactId>arcsde2</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jpe_sdk.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>arcsde</groupId>
             <artifactId>arcsde3</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/icu4j_3_2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>arcsde</groupId>
             <artifactId>arcsde4</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/concurrent.jar</systemPath>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>edu.usf.cutr.fdot7.main.Test</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
